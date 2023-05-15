@@ -1,0 +1,30 @@
+<?php
+
+return [
+
+    'main_navigation'               => 'MAIN NAVIGATION',
+    'blog'                          => 'Blog',
+    'pages'                         => 'Pages',
+    'account_settings'              => 'ACCOUNT SETTINGS',
+    'profile'                       => 'Profile',
+    'change_password'               => 'Change Password',
+    'multilevel'                    => 'Multi Level',
+    'level_one'                     => 'Level 1',
+    'level_two'                     => 'Level 2',
+    'level_three'                   => 'Level 3',
+    'labels'                        => 'LABELS',
+    'important'                     => 'Important',
+    'warning'                       => 'Warning',
+    'information'                   => 'Information',
+    'assets'                        => 'Assets',
+    'slots'                         => 'Slots',
+    'screen'                        => 'Screen',
+    'computers'                     => 'Computers',
+    'boards'                        => 'IO Boards',
+    'all_assets'                    => 'All',
+    'products'                      => 'Products',
+    'branches'                       => 'Subsidiaries',
+    'providers'                     => 'Providers',
+    'customers'                     => 'Customers',
+    'users'                         => 'Users',
+];

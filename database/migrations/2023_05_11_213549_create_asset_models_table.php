@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 30);
 
-            $table->unsignedBigInteger('asset_type_id');
-            $table->foreign('asset_type_id')->references('id')->on('asset_types');
+            $table->foreignId('asset_type_id')->constrained();
 
             $table->timestamps();
 
