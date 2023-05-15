@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('sets', function (Blueprint $table) {
             $table->id();
 
-            $table->foreign('slot_id')->references('id')->on('assets');
-            $table->foreign('screen_id')->references('id')->on('assets');
-            $table->foreign('pc_id')->references('id')->on('assets');
-            $table->foreign('card_id')->references('id')->on('assets');
+            $table->foreignId('slot_id')->constrained('assets', 'id');
+            $table->foreignId('screen_id')->constrained('assets', 'id');
+            $table->foreignId('pc_id')->constrained('assets', 'id');
+            $table->foreignId('card_id')->constrained('assets', 'id');
 
             $table->timestamps();
         });

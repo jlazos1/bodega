@@ -18,8 +18,8 @@ return new class extends Migration
             $table->double('net_amount');
             $table->double('iva');
 
-            $table->foreign('document_type_id')->references('id')->on('document_types');
-            $table->foreign('provider_id')->references('id')->on('providers');
+            $table->foreignId('document_type_id')->constrained();
+            $table->foreignId('provider_id')->constrained();
 
             $table->timestamps();
         });

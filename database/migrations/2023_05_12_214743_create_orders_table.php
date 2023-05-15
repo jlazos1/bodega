@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->date('date');
 
-            $table->foreign('solicitante_id')->references('id')->on('users');
-            $table->foreign('autoriza_id')->references('id')->on('users');
+            $table->foreignId('applicant_id')->constrained('users', 'id');
+            $table->foreignId('authorizing_id')->constrained('users', 'id');
 
             $table->timestamps();
         });

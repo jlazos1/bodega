@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name', 30);
             $table->double('value');
 
-            $table->foreign('branch_id')->references('id')->on('branchs');
+            $table->foreignId('branch_id')->constrained();
 
             $table->timestamps();
         });

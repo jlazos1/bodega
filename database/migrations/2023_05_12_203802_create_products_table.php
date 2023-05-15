@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name', 35);
             $table->double('price');
 
-            $table->foreign('product_type_id')->references('id')->on('product_types');
+            $table->foreignId('product_type_id')->constrained();
 
             $table->timestamps();
         });

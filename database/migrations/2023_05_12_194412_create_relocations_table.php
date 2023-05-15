@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->date('date');
 
-            $table->foreign('asset_id')->references('id')->on('assets');
-            $table->foreign('origin')->references('id')->on('branches');
-            $table->foreign('destination')->references('id')->on('branches');
+            $table->foreignId('asset_id')->constrained();
+            $table->foreignId('origin')->constrained('branches', 'id');
+            $table->foreignId('destination')->constrained('branches', 'id');
 
             $table->timestamps();
         });
