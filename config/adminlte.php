@@ -370,8 +370,8 @@ return [
         ['header' => 'Administrar'],
         [
             'text'       => 'users',
-            'icon_color' => 'cyan',
-            'url'        => '#',
+            'icon'       => 'fa fa-users fa-fw',
+            'route'        => 'admin.users.index',
         ],
         [
             'text'       => 'assets',
