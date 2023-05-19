@@ -16,4 +16,6 @@
 
 @section('js')
     @livewireScripts
+
+   
 @stop

@@ -16,7 +16,9 @@ return new class extends Migration
             $table->string('name', 30);
             $table->string('address', 150);
             $table->string('phone', 15);
+            $table->foreignId('city_id')->constrained();
             $table->timestamps();
+
         });
     }
 

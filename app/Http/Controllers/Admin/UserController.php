@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Branch;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 
@@ -24,8 +26,11 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::all();
+        $branches = DB::table('branches')
+            ->join('cities', 'cities.id', '=', 'branches.city_id')
+            ->pluck('branches.name', 'branches.id');
 
-        return view('admin.users.create', compact('roles'));
+        return view('admin.users.create', compact('roles', 'branches'));
     }
 
     /**
@@ -36,13 +41,14 @@ class UserController extends Controller
         $user = new User([
             'name' => $request->get('name'),
             'email' => $request->get('email'),
-            'password' => Hash::make($request->get('password'))
+            'password' => Hash::make($request->get('password')),
+            'branch_id' => $request->get('branch_id')
         ]);
         $user->save();
 
         $user->roles()->sync($request->roles);
 
-        return redirect()->route('admin.users.index', $user)->with('info', 'Se modificaron los datos correctamente');
+        return redirect()->route('admin.users.index', $user)->with('info', 'Se creó el usuario correctamente');
     }
 
     /**
@@ -56,11 +62,16 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User $user)
+    public function edit(string $id)
     {
-        $roles = Role::all();
+        $user = User::find($id);
 
-        return view('admin.users.edit', compact('user', 'roles'));
+        $roles = Role::all();
+        $branches = DB::table('branches')
+            ->join('cities', 'cities.id', '=', 'branches.city_id')
+            ->pluck('branches.name', 'branches.id');
+
+        return view('admin.users.edit', compact('user', 'roles', 'branches'));
     }
 
     /**
@@ -71,7 +82,8 @@ class UserController extends Controller
         $user->roles()->sync($request->roles);
         $user->update([
             'name' => $request->get('name'),
-            'email' => $request->get('email')   
+            'email' => $request->get('email') ,
+            'branch_id' => $request->get('branch_id')  
         ]);
 
         return redirect()->route('admin.users.edit', $user)->with('info', 'Se modificaron los datos correctamente');

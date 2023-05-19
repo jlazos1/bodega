@@ -13,5 +13,6 @@ class Branch extends Model
         'name', 
         'address', 
         'phone',
+        'city_id'
     ];
 }

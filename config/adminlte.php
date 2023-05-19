@@ -367,11 +367,16 @@ return [
                 ],
             ],
         ],*/
-        ['header' => 'Administrar'],
+        ['header' => 'ADMINISTRAR'],
         [
             'text'       => 'users',
             'icon'       => 'fa fa-users fa-fw',
             'route'        => 'admin.users.index',
+        ],
+        [
+            'text'       => 'branches',
+            'icon'       => 'fa fa-building fa-fw',
+            'route'        => 'admin.branches.index',
         ],
         [
             'text'       => 'assets',
@@ -411,7 +416,7 @@ return [
             'icon_color' => 'cyan',
             'url'        => '#',
         ],
-        
+
         [
             'text'       => 'customers',
             'icon_color' => 'cyan',
@@ -481,17 +486,62 @@ return [
                 ],
             ],
         ],
-        'Select2' => [
-            'active' => false,
+        'DatatablesPlugins' => [
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
+                    'location' => 'vendor/datatables-plugins/buttons/js/dataTables.buttons.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/datatables-plugins/buttons/js/buttons.bootstrap4.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/datatables-plugins/buttons/js/buttons.html5.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/datatables-plugins/buttons/js/buttons.print.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/datatables-plugins/jszip/jszip.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/datatables-plugins/pdfmake/pdfmake.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/datatables-plugins/pdfmake/vfs_fonts.js',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'vendor/datatables-plugins/buttons/css/buttons.bootstrap4.min.css',
+                ],
+            ],
+        ],
+        'Select2' => [
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js',
                 ],
                 [
                     'type' => 'css',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css',
                 ],
             ],
