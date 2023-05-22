@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('asset_models', function (Blueprint $table) {
             $table->id();
             $table->string('name', 30);
-
+            $table->text('description', 600);
             $table->foreignId('asset_type_id')->constrained();
 
             $table->timestamps();

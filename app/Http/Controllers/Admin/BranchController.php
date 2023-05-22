@@ -74,7 +74,7 @@ class BranchController extends Controller
             'city_id'   => $request->get('city_id'),
         ]);
 
-        return redirect()->route('admin.branches.index', $branch)->with('info', 'Se modificaron los datos correctamente');
+        return redirect()->route('admin.branches.index')->with('info', 'Se modificaron los datos correctamente');
     }
 
     /**

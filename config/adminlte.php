@@ -418,9 +418,9 @@ return [
 
         ],
         [
-            'text'       => 'products',
+            'text'       => 'asset_types',
             'icon_color' => 'cyan',
-            'url'        => '#',
+            'route'      => 'admin.asset_types.index',
         ],
         
 

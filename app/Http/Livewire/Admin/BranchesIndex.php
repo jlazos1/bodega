@@ -29,8 +29,6 @@ class BranchesIndex extends Component
             ->orWhere('cities.name', 'LIKE', '%' . $this->search . '%')
             ->paginate();
 
-        //$branches = Branch::where('name', 'LIKE', '%' . $this->search . '%')->paginate(10);
-
         return view('livewire.admin.branches-index', compact('branches'));
     }
 }

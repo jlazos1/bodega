@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\AssetType;
 use Illuminate\Http\Request;
 
 class AssetTypeController extends Controller
@@ -12,7 +13,7 @@ class AssetTypeController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.asset_types.index');
     }
 
     /**
@@ -20,7 +21,7 @@ class AssetTypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.asset_types.create');
     }
 
     /**
@@ -28,7 +29,12 @@ class AssetTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $asset_type = new AssetType([
+            'name'  => $request->get('name'),
+        ]);
+        $asset_type->save();
+
+        return redirect()->route('admin.asset_types.index')->with('info', 'Se creó el Tipo de Activo correctamente');
     }
 
     /**
@@ -44,15 +50,22 @@ class AssetTypeController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $asset_type = AssetType::find($id);
+
+        return view('admin.asset_types.edit', compact('asset_type'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, AssetType $asset_type)
     {
-        //
+        $asset_type->update([
+            'name' => $request->get('name')
+        ]);
+
+        return redirect()->route('admin.asset_types.index')->with('info', 'Se modificaron los datos correctamente');
+
     }
 
     /**
@@ -60,6 +73,10 @@ class AssetTypeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $asset_type = AssetType::find($id);
+        $asset_type->delete();
+
+        return redirect()->route('admin.asset_types.index')->with('info', 'Se eliminó el tipo de activo');
+
     }
 }

@@ -10,7 +10,8 @@ class AssetModel extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name'
+        'name',
+        'asset_type_id'
     ];
 
 }
