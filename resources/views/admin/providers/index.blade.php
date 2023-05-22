@@ -1,13 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', 'Sucursales')
+@section('title', 'Proveedores')
 
 @section('content_header')
-    <h1>Lista de Sucursales</h1>
+    <h1>Lista de Proveedores</h1>
 @stop
 
 @section('content')
-    @livewire('admin.branches-index')
+    @livewire('admin.providers-index')
 @stop
 
 @section('css')

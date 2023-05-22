@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Nueva Sucursal')
+@section('title', 'Clientes')
 
 @section('content_header')
-    <h1>Nueva Sucursal</h1>
+    <h1>Nuevo Cliente</h1>
 @stop
 
 @section('content')
@@ -19,7 +19,7 @@
     <div class="card">
         <div class="card-body">
             {!! Form::token() !!}
-            {!! Form::open(['route' => 'admin.branches.store', 'method' => 'post']) !!}
+            {!! Form::open(['route' => 'admin.customers.store', 'method' => 'post']) !!}
 
             {!! Form::label('name', 'Nombre', ['class' => 'h5']) !!}
             {!! Form::text('name', null, ['class' => 'form-control mb-2']) !!}
@@ -29,6 +29,9 @@
 
             {!! Form::label('phone', 'Teléfono', ['class' => 'h5']) !!}
             {!! Form::text('phone', null, ['class' => 'form-control mb-2']) !!}
+
+            {!! Form::label('email', 'Email', ['class' => 'h5']) !!}
+            {!! Form::email('email', null, ['class' => 'form-control mb-2']) !!}
 
             {!! Form::label('city_id', 'Ciudad', ['class' => 'h5']) !!}
             {!! Form::select('city_id', $cities, null, [

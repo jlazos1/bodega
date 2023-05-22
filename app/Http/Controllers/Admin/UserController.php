@@ -86,7 +86,7 @@ class UserController extends Controller
             'branch_id' => $request->get('branch_id')  
         ]);
 
-        return redirect()->route('admin.users.edit', $user)->with('info', 'Se modificaron los datos correctamente');
+        return redirect()->route('admin.users.index', $user)->with('info', 'Se modificaron los datos correctamente');
     }
 
     /**

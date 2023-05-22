@@ -5,40 +5,37 @@
         </strong>
     </div>
 @endif
+
 <div>
-    <a href="{{ route('admin.users.create') }}" class="btn btn-primary mb-2">Nuevo Usuario</a>
+    <a href="{{ route('admin.providers.create') }}" class="btn btn-primary mb-2">Nuevo Proveedor</a>
     <div class="card">
         <div class="card-header">
             <input wire:model="search" type="text" class="form-control" placeholder="Filtrar">
         </div>
 
-
-        @if ($users->count())
+        @if ($providers->count())
             <div class="card-body">
-                <table class="table table-striped table-users">
+                <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>ID</th>
                             <th>Nombre</th>
                             <th>Email</th>
-                            <th>Sucursal</th>
-                            <th></th>
+                            <th>Teléfono</th>
+                            <th>Ciudad</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($users as $user)
+                        @foreach ($providers as $provider)
                             <tr>
-                                <td>{{ $user->id }}</td>
-                                <td>{{ $user->name }}</td>
-                                <td>{{ $user->email }}</td>
-                                @if ($user->branch_name != null)
-                                    <td>{{ $user->branch_name }}</td>
-                                @else
-                                    <td>Sin Asignar</td>
-                                @endif
+                                <td>{{ $provider->id }}</td>
+                                <td>{{ $provider->name }}</td>
+                                <td>{{ $provider->email }}</td>
+                                <td>{{ $provider->phone }}</td>
+                                <td>{{ $provider->city_name }}</td>
 
                                 <td width="10px">
-                                    <a href="{{ route('admin.users.edit', $user->id) }}"
+                                    <a href="{{ route('admin.providers.edit', $provider->id) }}"
                                         class="btn btn-primary">Editar</a>
                                 </td>
                             </tr>
@@ -47,7 +44,7 @@
                 </table>
             </div>
             <div class="card-footer">
-                {{ $users->links() }}
+                {{ $providers->links() }}
             </div>
         @else
             <div class="card-body">

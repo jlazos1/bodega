@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Nueva Sucursal')
+@section('title', 'Sucursal')
 
 @section('content_header')
     <h1>Editar Sucursal</h1>
@@ -20,19 +20,18 @@
         <div class="card-body">
             {!! Form::token() !!}
             {!! Form::open(['route' => ['admin.branches.update', $branch], 'method' => 'put']) !!}
-            <p class="h5">Nombre</p>
+
+            {!! Form::label('name', 'Nombre', ['class' => 'h5']) !!}
             {!! Form::text('name', $branch->name, ['class' => 'form-control mb-2']) !!}
 
-            <p class="h5">Dirección</p>
+            {!! Form::label('address', 'Dirección', ['class' => 'h5']) !!}
             {!! Form::text('address', $branch->address, ['class' => 'form-control mb-2']) !!}
 
-            <p class="h5">Teléfono</p>
+            {!! Form::label('phone', 'Teléfono', ['class' => 'h5']) !!}
             {!! Form::text('phone', $branch->phone, ['class' => 'form-control mb-2']) !!}
 
-            <p class="h5">Ciudad</p>
-
+            {!! Form::label('city_id', 'Ciudad', ['class' => 'h5']) !!}
             {!! Form::select('city_id', $cities, $branch->city_id, ['class' => 'form-control mb-2', 'placeholder' => 'Seleccione una ciudad']) !!}
-
 
             {!! Form::submit('Guardar', ['class' => 'btn btn-primary']) !!}
 

@@ -3,18 +3,18 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Branch;
 use App\Models\City;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 
-class BranchController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('admin.branches.index');
+        return view('admin.customers.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class BranchController extends Controller
     {
         $cities = City::pluck('name', 'id');
 
-        return view('admin.branches.create', compact('cities'));
+        return view('admin.customers.create', compact('cities'));
     }
 
     /**
@@ -32,15 +32,16 @@ class BranchController extends Controller
      */
     public function store(Request $request)
     {
-        $branch = new Branch([
+        $customer = new Customer([
             'name'      => $request->get('name'),
-            'address'   => $request->get('address'),
+            'address'   => $request->get('address'), 
             'phone'     => $request->get('phone'),
+            'email'     => $request->get('email'),
             'city_id'   => $request->get('city_id'),
         ]);
-        $branch->save();
+        $customer->save();
 
-        return redirect()->route('admin.branches.index')->with('info', 'Se creó la sucursal correctamente');
+        return redirect()->route('admin.customers.index')->with('info', 'Se creó la sucursal correctamente');
     }
 
     /**
@@ -48,7 +49,7 @@ class BranchController extends Controller
      */
     public function show(string $id)
     {
-        
+        //
     }
 
     /**
@@ -57,24 +58,27 @@ class BranchController extends Controller
     public function edit(string $id)
     {
         $cities = City::pluck('name', 'id');
-        $branch = Branch::find($id);
+        $customer = customer::find($id);
 
-        return view('admin.branches.edit', compact('branch', 'cities'));
+        return view('admin.customers.edit', compact('customer', 'cities'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Branch $branch)
+    public function update(Request $request, string $id)
     {
-        $branch->update([
+        $customer = customer::find($id);
+
+        $customer->update([
             'name'      => $request->get('name'),
-            'address'   => $request->get('address'),
+            'address'   => $request->get('address'), 
             'phone'     => $request->get('phone'),
+            'email'     => $request->get('email'),
             'city_id'   => $request->get('city_id'),
         ]);
 
-        return redirect()->route('admin.branches.index', $branch)->with('info', 'Se modificaron los datos correctamente');
+        return redirect()->route('admin.customers.index', $customer)->with('info', 'Se modificaron los datos correctamente');
     }
 
     /**

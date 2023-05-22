@@ -379,6 +379,17 @@ return [
             'route'        => 'admin.branches.index',
         ],
         [
+            'text'       => 'customers',
+            'icon'       => 'fa fa-user fa-fw',
+            'route'        => 'admin.customers.index',
+        ],
+        [
+            'text'       => 'providers',
+            'icon'       => 'fa fa-truck fa-fw',
+            'route'        => 'admin.providers.index',
+        ],
+        ['header' => 'ACTIVOS'],
+        [
             'text'       => 'assets',
             'icon_color' => 'cyan',
             'url'        => '#',
@@ -411,22 +422,7 @@ return [
             'icon_color' => 'cyan',
             'url'        => '#',
         ],
-        [
-            'text'       => 'branches',
-            'icon_color' => 'cyan',
-            'url'        => '#',
-        ],
-
-        [
-            'text'       => 'customers',
-            'icon_color' => 'cyan',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'providers',
-            'icon_color' => 'cyan',
-            'url'        => '#',
-        ],
+        
 
 
     ],

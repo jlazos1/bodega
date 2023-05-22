@@ -13,6 +13,7 @@ class Provider extends Model
         'name',
         'address',
         'phone',
-        'email', 
+        'email',
+        'city_id' 
     ];
 }
