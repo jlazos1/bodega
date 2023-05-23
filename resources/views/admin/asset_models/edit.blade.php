@@ -11,7 +11,7 @@
     <div class="card">
         <div class="card-body">
             {!! Form::token() !!}
-            {!! Form::open(['route' => ['admin.asset_models.update', $asset_type], 'method' => 'put']) !!}
+            {!! Form::open(['route' => ['admin.asset_models.update', $asset_model], 'method' => 'put']) !!}
 
             {!! Form::label('name', 'Nombre', ['class' => 'h5']) !!}
             {!! Form::text('name', $asset_model->name, ['class' => 'form-control mb-2']) !!}

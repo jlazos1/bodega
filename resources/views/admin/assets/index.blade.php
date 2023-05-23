@@ -1,13 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', 'Modelos de Activos')
+@section('title', 'Activos')
 
 @section('content_header')
-    <h1>Modelos de Activos</h1>
+    <h1>Activos</h1>
 @stop
 
 @section('content')
-    @livewire('admin.asset-models-index')
+    @livewire('admin.assets-index')
 @stop
 
 @section('css')

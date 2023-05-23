@@ -22,7 +22,7 @@ class AssetModelController extends Controller
      */
     public function create()
     {
-        $asset_types = AssetType::all();
+        $asset_types = AssetType::pluck('name', 'id');
 
         return view('admin.asset_models.create', compact('asset_types'));
     }
@@ -34,10 +34,10 @@ class AssetModelController extends Controller
     {
         $asset_model = new AssetModel([
             'name'          => $request->get('name'),
-            'desctiption'   => $request('description'),
-            'asset_type_id' => $request('asset_type_id')
+            'description'   => $request->get('description'),
+            'asset_type_id' => $request->get('asset_type_id')
         ]);
-        $asset_model->store();
+        $asset_model->save();
 
         return redirect()->route('admin.asset_models.index')->with('info', 'Se creó el Modelo de Activo correctamente');
     }
@@ -56,8 +56,9 @@ class AssetModelController extends Controller
     public function edit(string $id)
     {
         $asset_model = AssetModel::find($id);
+        $asset_types = AssetType::pluck('name', 'id');
 
-        return view('admin.asset_models.edit', compact('asset_model'));
+        return view('admin.asset_models.edit', compact('asset_model', 'asset_types'));
     }
 
     /**
@@ -67,8 +68,8 @@ class AssetModelController extends Controller
     {
         $asset_model->update([
             'name'          => $request->get('name'),
-            'desctiption'   => $request('description'),
-            'asset_type_id' => $request('asset_type_id')
+            'description'   => $request->get('description'),
+            'asset_type_id' => $request->get('asset_type_id')
         ]);
 
         return redirect()->route('admin.asset_models.index')->with('info', 'Se modificaron los datos correctamente');

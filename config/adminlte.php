@@ -418,9 +418,19 @@ return [
 
         ],
         [
+            'text'       => 'assets',
+            'icon_color' => 'cyan',
+            'route'      => 'admin.assets.index',
+        ],
+        [
             'text'       => 'asset_types',
             'icon_color' => 'cyan',
             'route'      => 'admin.asset_types.index',
+        ],
+        [
+            'text'       => 'asset_models',
+            'icon_color' => 'cyan',
+            'route'      => 'admin.asset_models.index',
         ],
         
 
