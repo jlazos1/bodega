@@ -432,6 +432,22 @@ return [
             'icon_color' => 'cyan',
             'route'      => 'admin.asset_models.index',
         ],
+        ['header' => 'PRODUCTOS'],
+        [
+            'text'       => 'products',
+            'icon_color' => 'red',
+            'route'      => 'admin.products.index',
+        ],
+        [
+            'text'       => 'product_types',
+            'icon_color' => 'red',
+            'route'      => 'admin.product_types.index',
+        ],
+        [
+            'text'       => 'inputs',
+            'icon_color' => 'red',
+            'route'      => 'admin.inputs.index',
+        ]
         
 
 

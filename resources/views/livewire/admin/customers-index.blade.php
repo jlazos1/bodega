@@ -23,6 +23,7 @@
                             <th>Email</th>
                             <th>Teléfono</th>
                             <th>Ciudad</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>

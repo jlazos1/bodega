@@ -13,7 +13,8 @@ class Input extends Model
         'date', 
         'doc_number',
         'net_amount', 
-        'iva'
-
+        'iva', 
+        'document_type_id',
+        'provider_id'
     ];
 }

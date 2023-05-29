@@ -10,6 +10,8 @@ class ProductBranch extends Model
     use HasFactory;
     
     protected $fillable = [
+        'product_id',
+        'branch_id',
         'quantity',
     ];
 }

@@ -41,7 +41,6 @@ class AssetController extends Controller
             'asset_model_id'    => $request->get('asset_model_id')
         ]);
         $asset->save();
-
         return redirect()->route('admin.assets.index')->with('info', 'Se creó el Activo correctamente');
     }
 
@@ -77,9 +76,8 @@ class AssetController extends Controller
             'branch_id'         => $request->get('branch_id'),
             'asset_model_id'    => $request->get('asset_model_id')
         ]);
-
+        
         return redirect()->route('admin.assets.index')->with('info', 'Se modificaron los datos correctamente');
-
     }
 
     /**
@@ -88,5 +86,10 @@ class AssetController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function qrcode(string $url)
+    {
+        return view('qrcode', compact('url'));
     }
 }

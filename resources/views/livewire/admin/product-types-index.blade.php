@@ -7,35 +7,31 @@
 @endif
 
 <div>
-    <a href="{{ route('admin.asset_models.create') }}" class="btn btn-primary mb-2">Nuevo</a>
+    <a href="{{ route('admin.product_types.create') }}" class="btn btn-primary mb-2">Nuevo</a>
     <div class="card">
         <div class="card-header">
             <input wire:model="search" type="text" class="form-control" placeholder="Filtrar">
         </div>
 
 
-        @if ($asset_models->count())
+        @if ($product_types->count())
             <div class="card-body">
                 <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>ID</th>
                             <th>Nombre</th>
-                            <th>Tipo de Activo</th>
-                            <th>Descripción</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($asset_models as $am)
+                        @foreach ($product_types as $prd_type)
                             <tr>
-                                <td>{{ $am->id }}</td>
-                                <td>{{ $am->name }}</td>
-                                <td>{{ $am->asset_type_name}}</td>
-                                <td> <a href="">Descripcion</a></td>
+                                <td>{{ $prd_type->id }}</td>
+                                <td>{{ $prd_type->name }}</td>
                                 <td width="10px">
-                                    <a href="{{ route('admin.asset_models.edit', $am->id) }}" class="btn btn-primary">Editar</a>
-                                    <form action="{{ route('admin.asset_models.destroy', $am->id) }}" method="POST">
+                                    <a href="{{ route('admin.product_types.edit', $prd_type->id) }}" class="btn btn-primary">Editar</a>
+                                    <form action="{{ route('admin.product_types.destroy', $prd_type->id) }}" method="POST">
                                         @method('DELETE')
                                         @csrf
                                         <button class="btn btn-danger">Eliminar</button>
@@ -47,7 +43,7 @@
                 </table>
             </div>
             <div class="card-footer">
-                {{ $asset_models->links() }}
+                {{ $product_types->links() }}
             </div>
         @else
             <div class="card-body">

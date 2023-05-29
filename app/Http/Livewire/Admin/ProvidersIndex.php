@@ -24,6 +24,8 @@ class ProvidersIndex extends Component
         $providers = DB::table('providers')
             ->join('cities', 'providers.city_id', '=', 'cities.id')
             ->select('providers.*', 'cities.name AS city_name')
+            ->where('providers.name', 'LIKE', '%' . $this->search . '%')
+            ->where('cities.name', 'LIKE', '%' . $this->search . '%')
             ->paginate();
 
         return view('livewire.admin.providers-index', compact('providers'));
