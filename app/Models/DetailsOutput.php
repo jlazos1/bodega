@@ -10,6 +10,8 @@ class DetailsOutput extends Model
     use HasFactory;
 
     protected $fillable = [
+        'product_id',
+        'output_id',
         'quantity',
     ];
 }

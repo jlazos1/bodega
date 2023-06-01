@@ -11,6 +11,7 @@ class Output extends Model
 
     protected $fillable = [
         'date',
-        'details'
+        'origin_branch_id',
+        'destination_branch_id'
     ];
 }

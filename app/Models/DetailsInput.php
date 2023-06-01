@@ -10,6 +10,8 @@ class DetailsInput extends Model
     use HasFactory;
 
     protected $fillable = [
+        'product_id',
+        'input_id',
         'quantity',
         'price'
     ];

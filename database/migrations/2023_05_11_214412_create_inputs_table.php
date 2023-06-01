@@ -20,6 +20,8 @@ return new class extends Migration
 
             $table->foreignId('document_type_id')->constrained();
             $table->foreignId('provider_id')->constrained();
+            $table->foreignId('branch_id')->constrained();
+
 
             $table->timestamps();
         });

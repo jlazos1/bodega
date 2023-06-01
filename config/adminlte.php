@@ -293,11 +293,6 @@ return [
         // Navbar items:
 
         [
-            'type'         => 'navbar-search',
-            'text'         => 'search',
-            'topnav_right' => true,
-        ],
-        [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
         ],
@@ -509,7 +504,7 @@ return [
             ],
         ],
         'DatatablesPlugins' => [
-            'active' => true,
+            'active' => false,
             'files' => [
                 [
                     'type' => 'js',
@@ -650,5 +645,5 @@ return [
     |
     */
 
-    'livewire' => false,
+    'livewire' => true,
 ];

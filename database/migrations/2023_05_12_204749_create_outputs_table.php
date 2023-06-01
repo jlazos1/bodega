@@ -14,7 +14,10 @@ return new class extends Migration
         Schema::create('outputs', function (Blueprint $table) {
             $table->id();
             $table->date('date');
-            $table->text('details');
+
+            $table->foreignId('origin_branch_id')->constrained('branches', 'id');
+            $table->foreignId('destination_branch_id')->constrained('branches', 'id');
+
             $table->timestamps();
         });
     }

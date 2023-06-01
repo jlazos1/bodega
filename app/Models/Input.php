@@ -15,6 +15,7 @@ class Input extends Model
         'net_amount', 
         'iva', 
         'document_type_id',
-        'provider_id'
+        'provider_id',
+        'branch_id'
     ];
 }
