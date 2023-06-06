@@ -7,7 +7,7 @@
 @endif
 
 <div>
-    <a href="{{ route('admin.inputs.create') }}" class="btn btn-primary mb-2">Nuevo</a>
+    <a href="{{ route('admin.outputs.create') }}" class="btn btn-primary mb-2">Nuevo</a>
     <div class="card">
         <div class="card-header">
             <input wire:model="search" type="text" class="form-control mb-2" placeholder="Filtrar">
@@ -16,31 +16,28 @@
         </div>
 
         
-        @if ($inputs->count())
+        @if ($outputs->count())
             <div class="card-body">
                 <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Proveedor</th>
-                            <th>Tipo Doc.</th>
-                            <th>Nro Doc.</th>
                             <th>Fecha</th>
-                            <th>Monto Neto</th>
+                            <th>Origen</th>
+                            <th>Destino</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($inputs as $input)
+                        @foreach ($outputs as $output)
                             <tr>
-                                <td>{{ $input->id }}</td>
-                                <td><a href="#">{{ $input->provider_name }}</a></td>
-                                <td>{{ $input->document_type_name}}</td>
-                                <td>{{ $input->doc_number}}</td>
-                                <td>{{ \Carbon\Carbon::parse($input->date)->format('d-m-Y')}}</td>
-                                <td>{{ $input->net_amount}}</td>
+                                <td>{{ $output->id }}</td>
+                                <td>{{ \Carbon\Carbon::parse($output->date)->format('d-m-Y')}}</td>
+                                <td>{{ $output->origin_branch_id }}</td>
+                                <td>{{ $output->destination_branch_id}}</td>
                                 <td width="10px">
-                                    <a href="{{ route('admin.inputs.edit', [$input->id]) }}" class="btn btn-primary">Editar</a>
+                                    <a href="">Ver Productos</a>
+                                    <a href="{{ route('admin.outputs.edit', [$output->id]) }}" class="btn btn-primary">Editar</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -48,7 +45,7 @@
                 </table>
             </div>
             <div class="card-footer">
-                {{ $inputs->links() }}
+                {{ $outputs->links() }}
             </div>
         @else
             <div class="card-body">

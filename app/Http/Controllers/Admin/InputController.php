@@ -5,10 +5,13 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Livewire\Admin\DetailsInputsIndex;
 use App\Models\Branch;
+use App\Models\DetailsInput;
 use App\Models\DocumentType;
 use App\Models\Input;
+use App\Models\ProductBranch;
 use App\Models\Provider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class InputController extends Controller
 {
@@ -50,7 +53,6 @@ class InputController extends Controller
         $input_id = $input->id;
 
         return redirect()->route('details_inputs', ['input_id' => $input_id]);
-
     }
 
     /**
@@ -79,17 +81,36 @@ class InputController extends Controller
      */
     public function update(Request $request, Input $input)
     {
+        $branch_last = $input->branch_id;
         $input->update([
             'date'              => $request->get('date'),
             'provider_id'       => $request->get('provider_id'),
             'document_type_id'  => $request->get('document_type_id'),
             'branch_id'         => $request->get('branch_id'),
             'doc_number'        => $request->get('doc_number'),
-            'net_amount'        => 0,
-            'iva'               => 0,
         ]);
         $input->save();
         $input_id = $input->id;
+
+        $details_input = DetailsInput::where('input_id', $input->id)->get();
+
+        if ($branch_last != $input->branch_id) {
+            foreach ($details_input as $dinputs) {
+                $product_branch = ProductBranch::where('product_id', $dinputs->product_id)
+                    ->where('branch_id', $branch_last)
+                    ->first();
+
+                $product_branch->update([
+                    'quantity'      => $product_branch->quantity - $dinputs->quantity,
+                ]);
+
+                ProductBranch::updateOrInsert(
+                    ['product_id' => $dinputs->product_id, 'branch_id' => $input->branch_id],
+                    ['quantity' => DB::raw("quantity + $dinputs->quantity")]
+                );
+
+            }
+        }
 
         return redirect()->route('details_inputs', ['input_id' => $input_id]);
     }
@@ -100,9 +121,5 @@ class InputController extends Controller
     public function destroy(string $id)
     {
         //
-    }
-
-    public function products_view(){
-
     }
 }

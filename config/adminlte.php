@@ -442,6 +442,11 @@ return [
             'text'       => 'inputs',
             'icon_color' => 'red',
             'route'      => 'admin.inputs.index',
+        ],
+        [
+            'text'       => 'outputs',
+            'icon_color' => 'red',
+            'route'      => 'admin.outputs.index',
         ]
         
 

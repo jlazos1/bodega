@@ -38,6 +38,8 @@ class DetailsInputController extends Controller
             ->where('input_id', $request->get('input_id'))
             ->first();
 
+        $input = Input::where('id', $request->get('input_id'))->first();
+
         if ($details == null) {
             $details = new DetailsInput([
                 'product_id'    => $request->get('product_id'),
@@ -46,6 +48,7 @@ class DetailsInputController extends Controller
                 'price'         => $request->get('price'),
             ]);
             $details->save();
+
         } else {
             $details->update([
                 'quantity'      => $details->quantity + $request->get('quantity'),
@@ -53,11 +56,15 @@ class DetailsInputController extends Controller
             ]);
         }
 
+        $input->update([
+            'net_amount'    => $input->net_amount + ($request->get('quantity') * $request->get('price')),
+        ]);
+
         $branch_id = DB::table('inputs')->where('id', $request->get('input_id'))->first()->branch_id;
         $product_branch = ProductBranch::where('product_id', $request->get('product_id'))
             ->where('branch_id', $branch_id)
             ->first();
-            
+
 
         if ($product_branch == null) {
             $product_branch = new ProductBranch([
@@ -106,6 +113,7 @@ class DetailsInputController extends Controller
         $details = DetailsInput::where('id', $id)->first();
         $branch_id = Input::where('id', $details->input_id)->first()->branch_id;
 
+
         $product_branch = ProductBranch::where('product_id', $details->product_id)
             ->where('branch_id', $branch_id)
             ->first();
@@ -113,8 +121,14 @@ class DetailsInputController extends Controller
         $product_branch->update([
             'quantity'      => $product_branch->quantity - $details->quantity,
         ]);
-        
+
         $input_id = $details->input_id;
+
+        $input = Input::where('id', $input_id)->first();
+        $input->update([
+            'net_amount'    => $input->net_amount - ($details->quantity * $details->price),
+        ]);
+
         $details->delete();
 
         return redirect()->route('details_inputs', ['input_id' => $input_id]);
