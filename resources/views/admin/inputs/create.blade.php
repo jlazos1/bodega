@@ -18,28 +18,45 @@
                 'class' => 'form-control mb-2 select-city',
                 'placeholder' => 'Seleccione una Sucursal',
             ]) !!}
-            
+            @error('branch_id')
+                <small style="color: red">{{ $message }}</small><br>
+            @enderror
+
             {!! Form::label('date', 'Fecha', ['class' => 'h5']) !!}
             {!! Form::date('date', null, ['class' => 'form-control mb-2']) !!}
+            @error('date')
+                <small style="color: red">{{ $message }}</small><br>
+            @enderror
+
 
             {!! Form::label('provider_id', 'Proveedor', ['class' => 'h5']) !!}
             {!! Form::select('provider_id', $providers, null, [
                 'class' => 'form-control mb-2 select-city',
                 'placeholder' => 'Seleccione un Proveedor',
             ]) !!}
+            @error('provider_id')
+                <small style="color: red">{{ $message }}</small><br>
+            @enderror
+
 
             {!! Form::label('document_type_id', 'Tipo de Documento', ['class' => 'h5']) !!}
             {!! Form::select('document_type_id', $doc_types, null, [
                 'class' => 'form-control mb-2 select-city',
                 'placeholder' => 'Seleccione un tipo de Documento',
             ]) !!}
+            @error('document_type_id')
+                <small style="color: red">{{ $message }}</small><br>
+            @enderror
 
             {!! Form::label('doc_number', 'Número de Documento', ['class' => 'h5']) !!}
             {!! Form::number('doc_number', null, ['class' => 'form-control mb-2']) !!}
+            @error('doc_number')
+                <small style="color: red">{{ $message }}</small><br>
+            @enderror
 
-            
+
             {!! Form::submit('Siguiente', ['class' => 'btn btn-primary mt-4']) !!}
-            
+
             {!! Form::close() !!}
         </div>
     </div>

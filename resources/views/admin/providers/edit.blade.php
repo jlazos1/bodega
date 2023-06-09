@@ -23,21 +23,36 @@
 
             {!! Form::label('name', 'Nombre', ['class' => 'h5']) !!}
             {!! Form::text('name', $provider->name, ['class' => 'form-control mb-2']) !!}
+            @error('name')
+                <small style="color: red">{{ $message }}</small><br>
+            @enderror
 
             {!! Form::label('address', 'Dirección', ['class' => 'h5']) !!}
             {!! Form::text('address', $provider->address, ['class' => 'form-control mb-2']) !!}
+            @error('address')
+                <small style="color: red">{{ $message }}</small><br>
+            @enderror
 
             {!! Form::label('phone', 'Teléfono', ['class' => 'h5']) !!}
             {!! Form::text('phone', $provider->phone, ['class' => 'form-control mb-2']) !!}
+            @error('phone')
+                <small style="color: red">{{ $message }}</small><br>
+            @enderror
 
             {!! Form::label('email', 'Email', ['class' => 'h5']) !!}
             {!! Form::email('email', $provider->email, ['class' => 'form-control mb-2']) !!}
+            @error('email')
+                <small style="color: red">{{ $message }}</small><br>
+            @enderror
 
             {!! Form::label('city_id', 'Ciudad', ['class' => 'h5']) !!}
             {!! Form::select('city_id', $cities, $provider->city_id, [
                 'class' => 'form-control mb-2 select-city',
                 'placeholder' => 'Seleccione una ciudad',
             ]) !!}
+            @error('city_id')
+                <small style="color: red">{{ $message }}</small><br>
+            @enderror
 
 
             {!! Form::submit('Guardar', ['class' => 'btn btn-primary mt-4']) !!}

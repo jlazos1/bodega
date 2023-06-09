@@ -9,6 +9,8 @@ use App\Models\ProductBranch;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use function PHPUnit\Framework\isNull;
+
 class DetailsOutputController extends Controller
 {
     /**
@@ -32,42 +34,58 @@ class DetailsOutputController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'product_id'    => 'required',
+            'quantity'      => 'required',
+        ], [
+            'product_id.required'   => 'El campo Producto es obligatorio',
+            'quantity.required'     => 'El campo Cantidad es obligatorio',
+        ]);
+
         $output = Output::find($request->get('output_id'));
 
         $origin = ProductBranch::where('product_id', $request->get('product_id'))
             ->where('branch_id', $output->origin_branch_id)
             ->first();
 
-        if ($this->checkStock($origin->branch_id, $request->product_id, $request->quantity)) {
+        $exist = DetailsOutput::where('output_id', $request->get('output_id'))
+            ->where('product_id', $request->get('product_id'))
+            ->first();
 
-            DetailsOutput::updateOrInsert(
-                [
-                    'output_id'     => $request->get('output_id'),
-                    'product_id'    => $request->get('product_id')
-                ],
-                [
-                    'quantity'      => $request->get('quantity'),
-                ]
-            );
-
-            $origin->update([
-                'quantity'      => $origin->quantity - $request->get('quantity')
-            ]);
-
-            $quantity = intval($request->get('quantity'));
-            ProductBranch::updateOrInsert(
-                [
-                    'product_id'    => $request->get('product_id'),
-                    'branch_id'     => $output->destination_branch_id
-                ],
-                [
-                    'quantity'      =>  DB::raw("quantity + $quantity")
-                ]
-            );
+        if (!is_null($exist)) {
+            return redirect()->route('details_outputs', ['output_id' => $request->get('output_id')])->with('error', 'El producto ya se encuentra registrado en esta salida');
         }
 
-        return redirect()->route('details_outputs', ['output_id' => $request->get('output_id')]);
+        if (!$this->checkStock($origin->branch_id, $request->product_id, $request->quantity)) {
+            return redirect()->route('details_outputs', ['output_id' => $request->get('output_id')])->with('error', 'No hay stock suficiente para realizar este movimiento');
+        }
 
+        DetailsOutput::updateOrInsert(
+            [
+                'output_id'     => $request->get('output_id'),
+                'product_id'    => $request->get('product_id')
+            ],
+            [
+                'quantity'      => $request->get('quantity'),
+            ]
+        );
+
+        $origin->update([
+            'quantity'      => $origin->quantity - $request->get('quantity')
+        ]);
+
+        $quantity = intval($request->get('quantity'));
+        ProductBranch::updateOrInsert(
+            [
+                'product_id'    => $request->get('product_id'),
+                'branch_id'     => $output->destination_branch_id
+            ],
+            [
+                'quantity'      =>  DB::raw("quantity + $quantity")
+            ]
+        );
+
+        return redirect()->route('details_outputs', ['output_id' => $request->get('output_id')])->with('correct', 'El producto se agregó correctamente');;
     }
 
     /**
@@ -108,7 +126,7 @@ class DetailsOutputController extends Controller
 
         $origin->update([
             'quantity'      =>  $origin->quantity + $details->quantity
-        ]);    
+        ]);
 
         $destination = ProductBranch::where('product_id', $details->product_id)
             ->where('branch_id', $output->destination_branch_id)
@@ -116,11 +134,10 @@ class DetailsOutputController extends Controller
 
         $destination->update([
             'quantity'      =>  $destination->quantity - $details->quantity
-        ]);   
-        
+        ]);
+
         $details->delete();
         return redirect()->route('details_outputs', ['output_id' => $output->id]);
-
     }
 
     public function checkStock($branch_id, $product_id, $quantity)

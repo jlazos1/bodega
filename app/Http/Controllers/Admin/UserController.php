@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
+use Illuminate\Validation\Rule;
+
 
 class UserController extends Controller
 {
@@ -38,10 +40,24 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name'      => 'required',
+            'email'     => 'required|email|unique:users',
+            'password'  => 'required',
+            'branch_id' => 'required'
+        ], [
+            'name.required'         => 'El campo Nombre es obligatorio',
+            'email.required'        => 'El campo Email es obligatorio',
+            'email.email'           => 'El Email ingresado no es válido',
+            'email.unique'          => 'Este email ya se encuentra registrado',
+            'password.required'     => 'El campo Contraseña es olbigatorio',
+            'branch_id.required'    => 'El campo Sucursal es obligatorio',
+        ]);
+
         $user = new User([
-            'name' => $request->get('name'),
-            'email' => $request->get('email'),
-            'password' => Hash::make($request->get('password')),
+            'name'      => $request->get('name'),
+            'email'     => $request->get('email'),
+            'password'  => Hash::make($request->get('password')),
             'branch_id' => $request->get('branch_id')
         ]);
         $user->save();
@@ -79,11 +95,23 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        $request->validate([
+            'name'      => 'required',
+            'email'     => 'required|email|'. Rule::unique('users')->ignore($user->id),
+            'branch_id' => 'required'
+        ], [
+            'name.required'         => 'El campo Nombre es obligatorio',
+            'email.required'        => 'El campo Email es obligatorio',
+            'email.email'           => 'El Email ingresado no es válido',
+            'email.unique'          => 'Este email ya se encuentra registrado',
+            'branch_id.required'    => 'El campo Sucursal es obligatorio',
+        ]);
+
         $user->roles()->sync($request->roles);
         $user->update([
             'name' => $request->get('name'),
-            'email' => $request->get('email') ,
-            'branch_id' => $request->get('branch_id')  
+            'email' => $request->get('email'),
+            'branch_id' => $request->get('branch_id')
         ]);
 
         return redirect()->route('admin.users.index', $user)->with('info', 'Se modificaron los datos correctamente');

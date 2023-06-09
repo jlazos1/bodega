@@ -23,6 +23,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Proveedor</th>
+                            <th>Sucursal</th>
                             <th>Tipo Doc.</th>
                             <th>Nro Doc.</th>
                             <th>Fecha</th>
@@ -34,13 +35,14 @@
                         @foreach ($inputs as $input)
                             <tr>
                                 <td>{{ $input->id }}</td>
-                                <td><a href="#">{{ $input->provider_name }}</a></td>
+                                <td>{{ $input->provider_name }}</td>
+                                <td>{{ $input->branch_name}}</td>
                                 <td>{{ $input->document_type_name}}</td>
                                 <td>{{ $input->doc_number}}</td>
                                 <td>{{ \Carbon\Carbon::parse($input->date)->format('d-m-Y')}}</td>
                                 <td>{{ $input->net_amount}}</td>
                                 <td width="10px">
-                                    <a href="{{ route('admin.inputs.edit', [$input->id]) }}" class="btn btn-primary">Editar</a>
+                                    <a href="{{ route('admin.inputs.edit', [$input->id]) }}" class="btn btn-primary fa fa-pen-to-square"></a>
                                 </td>
                             </tr>
                         @endforeach

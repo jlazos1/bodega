@@ -18,23 +18,36 @@
 
     <div class="card">
         <div class="card-body">
+
             {!! Form::token() !!}
             {!! Form::open(['route' => 'admin.users.store', 'method' => 'post']) !!}
-            
+
             {!! Form::label('name', 'Nombre', ['class' => 'h5']) !!}
             {!! Form::text('name', null, ['class' => 'form-control mb-2']) !!}
+            @error('name')
+                <small style="color: red">{{ $message }}</small><br>
+            @enderror
 
             {!! Form::label('email', 'Email', ['class' => 'h5']) !!}
             {!! Form::text('email', null, ['class' => 'form-control mb-2']) !!}
+            @error('email')
+                <small style="color: red">{{ $message }}</small><br>
+            @enderror
 
             {!! Form::label('password', 'Contraseña', ['class' => 'h5']) !!}
             {!! Form::password('password', ['class' => 'form-control mb-2']) !!}
+            @error('password')
+                <small style="color: red">{{ $message }}</small><br>
+            @enderror
 
             {!! Form::label('branch', 'Sucursal', ['class' => 'h5']) !!}
             {!! Form::select('branch_id', $branches, null, [
                 'class' => 'select-branch form-control',
                 'placeholder' => 'Seleccione una Sucursal',
             ]) !!}
+            @error('branch_id')
+                <small style="color: red">{{ $message }}</small><br>
+            @enderror
 
 
             <h2 class="h5 mt-3">Listado de roles</h2>

@@ -15,7 +15,9 @@
 
             {!! Form::label('name', 'Nombre', ['class' => 'h5']) !!}
             {!! Form::text('name', $asset_type->name, ['class' => 'form-control mb-2']) !!}
-            
+            @error('name')
+                <small style="color: red">{{ $message }}</small><br>
+            @enderror
 
             {!! Form::submit('Guardar', ['class' => 'btn btn-primary mt-4']) !!}
 

@@ -57,7 +57,7 @@
                                 <form action="{{ route('admin.detalles-inputs.destroy', $product->id) }}" method="POST">
                                     @method('DELETE')
                                     @csrf
-                                    <button class="btn btn-danger">Eliminar</button>
+                                    <button class="btn btn-danger fa fa-trash"></button>
                                 </form>
                             </td>
                         </tr>
@@ -71,6 +71,7 @@
 
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
+    <script src="https://kit.fontawesome.com/3ace52d1a2.js" crossorigin="anonymous"></script>
 @stop
 
 @section('js')

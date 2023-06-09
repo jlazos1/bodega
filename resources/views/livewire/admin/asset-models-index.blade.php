@@ -34,11 +34,11 @@
                                 <td>{{ $am->asset_type_name}}</td>
                                 <td> <a href="">Descripcion</a></td>
                                 <td width="10px">
-                                    <a href="{{ route('admin.asset_models.edit', $am->id) }}" class="btn btn-primary">Editar</a>
+                                    <a href="{{ route('admin.asset_models.edit', $am->id) }}" class="btn btn-primary fa fa-pen-to-square"></a>
                                     <form action="{{ route('admin.asset_models.destroy', $am->id) }}" method="POST">
                                         @method('DELETE')
                                         @csrf
-                                        <button class="btn btn-danger">Eliminar</button>
+                                        <button class="btn btn-danger fa fa-trash"></button>
                                     </form>
                                 </td>
                             </tr>

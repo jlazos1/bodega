@@ -34,12 +34,12 @@
                                 <td>{{ $product->price }}</td>
                                 <td>{{ $product->product_type_name }}</td>
                                 <td width="10px">
-                                    <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-primary">Editar</a>
-                                    <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST">
+                                    <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-primary fa fa-pen-to-square"></a>
+                                    <!--<form action="{{ route('admin.products.destroy', $product->id) }}" method="POST">
                                         @method('DELETE')
                                         @csrf
-                                        <button class="btn btn-danger">Eliminar</button>
-                                    </form>
+                                        <button class="btn btn-danger fa fa-trash"></button>
+                                    </form>-->
                                 </td>
                             </tr>
                         @endforeach

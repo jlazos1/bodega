@@ -30,11 +30,11 @@
                                 <td>{{ $at->id }}</td>
                                 <td>{{ $at->name }}</td>
                                 <td width="10px">
-                                    <a href="{{ route('admin.asset_types.edit', $at->id) }}" class="btn btn-primary">Editar</a>
+                                    <a href="{{ route('admin.asset_types.edit', $at->id) }}" class="btn btn-primary fa fa-pen-to-square"></a>
                                     <form action="{{ route('admin.asset_types.destroy', $at->id) }}" method="POST">
                                         @method('DELETE')
                                         @csrf
-                                        <button class="btn btn-danger">Eliminar</button>
+                                        <button class="btn btn-danger fa fa-trash"></button>
                                     </form>
                                 </td>
                             </tr>

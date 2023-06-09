@@ -36,7 +36,7 @@
                                 <td>{{ $asset->asset_model_name}}</td>
                                 <td> <a href="{{ route('qrcode', [$asset->id]) }}" target="_blank">Ver</a></td>
                                 <td width="10px">
-                                    <a href="{{ route('admin.assets.edit', [$asset->id]) }}" class="btn btn-primary">Editar</a>
+                                    <a href="{{ route('admin.assets.edit', [$asset->id]) }}" class="btn btn-primary fa fa-pen-to-square"></a>
                                 </td>
                             </tr>
                         @endforeach

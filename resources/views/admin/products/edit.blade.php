@@ -15,15 +15,24 @@
 
             {!! Form::label('name', 'Nombre', ['class' => 'h5']) !!}
             {!! Form::text('name', $product->name, ['class' => 'form-control mb-2']) !!}
+            @error('name')
+                <small style="color: red">{{ $message }}</small><br>
+            @enderror
 
             {!! Form::label('price', 'Valor', ['class' => 'h5']) !!}
             {!! Form::number('price', $product->price, ['class' => 'form-control mb-2']) !!}
+            @error('price')
+                <small style="color: red">{{ $message }}</small><br>
+            @enderror
 
-            {!! Form::label('product_type_id', 'Tipo de Producto', ['class' => 'h5']) !!}
+            {!! Form::label('product_type_id', 'Categoría', ['class' => 'h5']) !!}
             {!! Form::select('product_type_id', $product_types, $product->product_type_id, [
                 'class' => 'form-control mb-2',
-                'placeholder' => 'Seleccione un tipo de Producto',
+                'placeholder' => 'Seleccione una Categoría de Producto',
             ]) !!}
+            @error('product_type_id')
+                <small style="color: red">{{ $message }}</small><br>
+            @enderror
 
             {!! Form::submit('Guardar', ['class' => 'btn btn-primary mt-4']) !!}
 

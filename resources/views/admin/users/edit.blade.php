@@ -11,7 +11,7 @@
     @if (session('info'))
         <div class="alert alert-success">
             <strong>
-                {{session('info')}}
+                {{ session('info') }}
             </strong>
         </div>
     @endif
@@ -22,29 +22,38 @@
 
             {!! Form::label('name', 'Nombre', ['class' => 'h5']) !!}
             {!! Form::text('name', $user->name, ['class' => 'form-control mb-2']) !!}
+            @error('name')
+                <small style="color: red">{{ $message }}</small><br>
+            @enderror
 
             {!! Form::label('email', 'Email', ['class' => 'h5']) !!}
             {!! Form::text('email', $user->email, ['class' => 'form-control mb-2']) !!}
+            @error('email')
+                <small style="color: red">{{ $message }}</small><br>
+            @enderror
 
             {!! Form::label('branch', 'Sucursal', ['class' => 'h5']) !!}
             {!! Form::select('branch_id', $branches, null, [
                 'class' => 'select-branch form-control',
                 'placeholder' => 'Seleccione una Sucursal',
             ]) !!}
+            @error('branch_id')
+                <small style="color: red">{{ $message }}</small><br>
+            @enderror
 
 
-            <h2 class="h5">Listado de roles</h2>        
+            <h2 class="h5">Listado de roles</h2>
 
-                @foreach ($roles as $role)
-                    <div>
-                        <label>
-                            {!! Form::checkbox('roles[]', $role->id, null, ['class' => 'mr-1']) !!}
-                            {{$role->name}}
-                        </label>
-                    </div>
-                @endforeach
+            @foreach ($roles as $role)
+                <div>
+                    <label>
+                        {!! Form::checkbox('roles[]', $role->id, null, ['class' => 'mr-1']) !!}
+                        {{ $role->name }}
+                    </label>
+                </div>
+            @endforeach
 
-                {!! Form::submit('Guardar', ['class' => 'btn btn-primary']) !!}
+            {!! Form::submit('Guardar', ['class' => 'btn btn-primary']) !!}
 
             {!! Form::close() !!}
 

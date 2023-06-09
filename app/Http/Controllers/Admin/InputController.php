@@ -40,6 +40,20 @@ class InputController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'date'              => 'required',
+            'provider_id'       => 'required',
+            'document_type_id'  => 'required',
+            'branch_id'         => 'required',
+            'doc_number'        => 'required',
+        ], [
+            'date.required'             => 'El campo Fecha es obligatorio',
+            'provider_id.required'      => 'El campo Proveedor es obligatorio',
+            'document_type_id.required' => 'El campo Tipo de Documento es obligatorio',
+            'branch_id.required'        => 'El campo Sucursal es obligatorio',
+            'doc_number.required'       => 'El campo Número de documento es obligatorio',
+        ]);
+
         $input = new Input([
             'date'              => $request->get('date'),
             'provider_id'       => $request->get('provider_id'),
@@ -81,6 +95,20 @@ class InputController extends Controller
      */
     public function update(Request $request, Input $input)
     {
+        $request->validate([
+            'date'              => 'required',
+            'provider_id'       => 'required',
+            'document_type_id'  => 'required',
+            'branch_id'         => 'required',
+            'doc_number'        => 'required',
+        ], [
+            'date.required'             => 'El campo Fecha es obligatorio',
+            'provider_id.required'      => 'El campo Proveedor es obligatorio',
+            'document_type_id.required' => 'El campo Tipo de Documento es obligatorio',
+            'branch_id.required'        => 'El campo Sucursal es obligatorio',
+            'doc_number.required'       => 'El campo Número de documento es obligatorio',
+        ]);
+
         $branch_last = $input->branch_id;
         $input->update([
             'date'              => $request->get('date'),
@@ -108,7 +136,6 @@ class InputController extends Controller
                     ['product_id' => $dinputs->product_id, 'branch_id' => $input->branch_id],
                     ['quantity' => DB::raw("quantity + $dinputs->quantity")]
                 );
-
             }
         }
 

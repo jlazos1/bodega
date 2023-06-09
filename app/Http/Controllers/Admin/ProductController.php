@@ -32,6 +32,16 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name'              => 'required',
+            'price'             => 'required',
+            'product_type_id'   => 'required',
+        ], [
+            'name.required'             => 'El campo Nombre es obligatorio',
+            'price.required'            => 'El campo Valor es obligatorio',
+            'product_type_id.required'  => 'El campo Tipo de Producto es obligatorio',
+        ]);
+
         $product = new Product([
             'name'              => $request->get('name'),
             'price'             => $request->get('price'),
@@ -67,6 +77,16 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
+        $request->validate([
+            'name'              => 'required',
+            'price'             => 'required',
+            'product_type_id'   => 'required',
+        ], [
+            'name.required'             => 'El campo Nombre es obligatorio',
+            'price.required'            => 'El campo Valor es obligatorio',
+            'product_type_id.required'  => 'El campo Tipo de Producto es obligatorio',
+        ]);
+        
         $product->update([
             'name'              => $request->get('name'),
             'price'             => $request->get('price'),

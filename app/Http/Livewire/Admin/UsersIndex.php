@@ -22,10 +22,6 @@ class UsersIndex extends Component
     public function render()
     {
 
-        /*$users = User::where('name', 'LIKE', '%' . $this->search . '%')
-            ->orWhere('email', 'LIKE', '%' . $this->search . '%')
-            ->paginate()*/;
-
         $users = DB::table('users')
             ->leftJoin('branches', 'branches.id', '=', 'users.branch_id')
             ->select('users.*', 'branches.name AS branch_name')

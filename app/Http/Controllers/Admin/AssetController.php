@@ -34,6 +34,18 @@ class AssetController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name'              => 'required',
+            'value'             => 'required',
+            'branch_id'         => 'required',
+            'asset_model_id'    => 'required'
+        ], [
+            'name.required'             => 'El campo Nombre es obligatorio',
+            'value.required'            => 'El campo Valor es obligatorio',
+            'branch_id.required'        => 'El campo Sucursal es obligatorio',
+            'asset_model_id.required'   => 'El campo Modelo es obligatorio',
+        ]);
+
         $asset = new Asset([
             'name'              => $request->get('name'),
             'value'             => $request->get('value'),
@@ -70,13 +82,25 @@ class AssetController extends Controller
      */
     public function update(Request $request, Asset $asset)
     {
+        $request->validate([
+            'name'              => 'required',
+            'value'             => 'required',
+            'branch_id'         => 'required',
+            'asset_model_id'    => 'required'
+        ], [
+            'name.required'             => 'El campo Nombre es obligatorio',
+            'value.required'            => 'El campo Valor es obligatorio',
+            'branch_id.required'        => 'El campo Sucursal es obligatorio',
+            'asset_model_id.required'   => 'El campo Modelo es obligatorio',
+        ]);
+        
         $asset->update([
             'name'              => $request->get('name'),
             'value'             => $request->get('value'),
             'branch_id'         => $request->get('branch_id'),
             'asset_model_id'    => $request->get('asset_model_id')
         ]);
-        
+
         return redirect()->route('admin.assets.index')->with('info', 'Se modificaron los datos correctamente');
     }
 

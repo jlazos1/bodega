@@ -29,6 +29,13 @@ class ProductTypeController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name'      => 'required|unique:product_types',
+        ], [
+            'name.required'     => 'El campo Nombre es obligatorio',
+            'name.unique'       => 'La categoría ingresada ya se encuentra registrada'
+        ]);
+
         $product_type = new ProductType([
             'name'  => $request->get('name'),
         ]);

@@ -33,11 +33,10 @@
                             <tr>
                                 <td>{{ $output->id }}</td>
                                 <td>{{ \Carbon\Carbon::parse($output->date)->format('d-m-Y')}}</td>
-                                <td>{{ $output->origin_branch_id }}</td>
-                                <td>{{ $output->destination_branch_id}}</td>
+                                <td>{{ $output->origin_branch_name }}</td>
+                                <td>{{ $output->destination_branch_name}}</td>
                                 <td width="10px">
-                                    <a href="">Ver Productos</a>
-                                    <a href="{{ route('admin.outputs.edit', [$output->id]) }}" class="btn btn-primary">Editar</a>
+                                    <a href="{{ route('admin.outputs.edit', [$output->id]) }}" class="btn btn-primary fa fa-pen-to-square"></a>
                                 </td>
                             </tr>
                         @endforeach

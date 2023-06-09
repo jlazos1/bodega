@@ -32,6 +32,16 @@ class AssetModelController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name'          => 'required',
+            'description'   => 'required',
+            'asset_type_id' => 'required'
+        ], [
+            'name.required'             => 'El campo Nombre es obligatorio',
+            'description.required'      => 'El campo Descripción es obligatorio',
+            'asset_type_id.required'    => 'El campo Tipo de Activo es obligatorio',
+        ]);
+
         $asset_model = new AssetModel([
             'name'          => $request->get('name'),
             'description'   => $request->get('description'),
@@ -66,6 +76,16 @@ class AssetModelController extends Controller
      */
     public function update(Request $request, AssetModel $asset_model)
     {
+        $request->validate([
+            'name'          => 'required',
+            'description'   => 'required',
+            'asset_type_id' => 'required'
+        ], [
+            'name.required'             => 'El campo Nombre es obligatorio',
+            'description.required'      => 'El campo Descripción es obligatorio',
+            'asset_type_id.required'    => 'El campo Tipo de Activo es obligatorio',
+        ]);
+
         $asset_model->update([
             'name'          => $request->get('name'),
             'description'   => $request->get('description'),
@@ -73,7 +93,6 @@ class AssetModelController extends Controller
         ]);
 
         return redirect()->route('admin.asset_models.index')->with('info', 'Se modificaron los datos correctamente');
-
     }
 
     /**

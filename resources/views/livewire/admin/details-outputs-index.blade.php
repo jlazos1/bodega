@@ -6,7 +6,16 @@
     <h1>Productos entrada</h1>
 @stop
 @section('content')
-
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+    @if (session('correct'))
+        <div class="alert alert-success">
+            {{ session('correct') }}
+        </div>
+    @endif
     <div class="card pr-4 pl-4 pb-5">
         {!! Form::token() !!}
         {!! Form::open(['route' => 'admin.detalles-outputs.store', 'method' => 'post']) !!}
@@ -27,10 +36,10 @@
         {!! Form::hidden('output_id', $output->id, ['class' => 'form-control mb-2']) !!}
 
         {!! Form::submit('Agregar', ['class' => 'btn btn-primary mt-4']) !!}
- 
+
         {!! Form::close() !!}
 
-        <a href="{{ route('admin.outputs.index')}}" class="btn btn-danger">Finalizar</a>
+        <a href="{{ route('admin.outputs.index') }}" class="btn btn-danger">Finalizar</a>
 
         <div>
             <table class="table table-striped mt-5">
@@ -44,13 +53,13 @@
                 <tbody>
                     @foreach ($productsAdd as $product)
                         <tr>
-                            <td>{{ $product->product_name}}</td>
+                            <td>{{ $product->product_name }}</td>
                             <td>{{ $product->quantity }}</td>
                             <td width="10px">
                                 <form action="{{ route('admin.detalles-outputs.destroy', $product->id) }}" method="POST">
                                     @method('DELETE')
                                     @csrf
-                                    <button class="btn btn-danger">Eliminar</button>
+                                    <button class="btn btn-danger fa fa-trash"></button>
                                 </form>
                             </td>
                         </tr>
@@ -64,6 +73,7 @@
 
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
+    <script src="https://kit.fontawesome.com/3ace52d1a2.js" crossorigin="anonymous"></script>
 @stop
 
 @section('js')

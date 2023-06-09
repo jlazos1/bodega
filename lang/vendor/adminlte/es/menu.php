@@ -27,4 +27,7 @@ return [
     'providers'                     => 'Proveedores',
     'customers'                     => 'Clientes',
     'users'                         => 'Usuarios',
+    'inputs'                        => 'Entradas',
+    'outputs'                       => 'Salidas', 
+    'product_types'                 => 'Categorías'
 ];

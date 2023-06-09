@@ -32,6 +32,18 @@ class BranchController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name'      => 'required',
+            'address'   => 'required',
+            'phone'     => 'required',
+            'city_id'   => 'required'
+        ], [
+            'name.required'         => 'El campo Nombre es obligatorio',
+            'address.required'      => 'El campo Dirección es obligatorio',
+            'phone.required'        => 'El campo Teléfono es obligatorio',
+            'city_id.required'      => 'El campo Ciudad es obligatorio',
+        ]);
+
         $branch = new Branch([
             'name'      => $request->get('name'),
             'address'   => $request->get('address'),
@@ -48,7 +60,6 @@ class BranchController extends Controller
      */
     public function show(string $id)
     {
-        
     }
 
     /**
@@ -67,6 +78,18 @@ class BranchController extends Controller
      */
     public function update(Request $request, Branch $branch)
     {
+        $request->validate([
+            'name'      => 'required',
+            'address'   => 'required',
+            'phone'     => 'required',
+            'city_id'   => 'required'
+        ], [
+            'name.required'         => 'El campo Nombre es obligatorio',
+            'address.required'      => 'El campo Dirección es obligatorio',
+            'phone.required'        => 'El campo Teléfono es obligatorio',
+            'city_id.required'      => 'El campo Ciudad es obligatorio',
+        ]);
+        
         $branch->update([
             'name'      => $request->get('name'),
             'address'   => $request->get('address'),

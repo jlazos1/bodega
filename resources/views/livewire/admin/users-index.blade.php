@@ -6,7 +6,7 @@
     </div>
 @endif
 <div>
-    <a href="{{ route('admin.users.create') }}" class="btn btn-primary mb-2">Nuevo Usuario</a>
+    <a href="{{ route('admin.users.create') }}" class="btn btn-primary mb-2">Nuevo</a>
     <div class="card">
         <div class="card-header">
             <input wire:model="search" type="text" class="form-control" placeholder="Filtrar">
@@ -39,7 +39,7 @@
 
                                 <td width="10px">
                                     <a href="{{ route('admin.users.edit', $user->id) }}"
-                                        class="btn btn-primary">Editar</a>
+                                        class="btn btn-primary fa fa-pen-to-square"></a>
                                 </td>
                             </tr>
                         @endforeach

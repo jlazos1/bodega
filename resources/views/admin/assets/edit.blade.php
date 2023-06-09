@@ -15,22 +15,33 @@
 
             {!! Form::label('name', 'Nombre', ['class' => 'h5']) !!}
             {!! Form::text('name', $asset->name, ['class' => 'form-control mb-2']) !!}
+            @error('name')
+                <small style="color: red">{{ $message }}</small><br>
+            @enderror
 
             {!! Form::label('value', 'Valor Monetario', ['class' => 'h5']) !!}
             {!! Form::number('value', $asset->value, ['class' => 'form-control mb-2']) !!}
+            @error('value')
+                <small style="color: red">{{ $message }}</small><br>
+            @enderror
 
             {!! Form::label('asset_model_id', 'Modelo', ['class' => 'h5']) !!}
             {!! Form::select('asset_model_id', $asset_models, $asset->asset_model_id, [
                 'class' => 'form-control mb-2',
                 'placeholder' => 'Seleccione un Modelo',
             ]) !!}
+            @error('asset_model_id')
+                <small style="color: red">{{ $message }}</small><br>
+            @enderror
 
             {!! Form::label('branch_id', 'Sucursal', ['class' => 'h5']) !!}
             {!! Form::select('branch_id', $branches, $asset->branch_id, [
                 'class' => 'form-control mb-2',
                 'placeholder' => 'Seleccione una Sucursal',
             ]) !!}
-
+            @error('branch_id')
+                <small style="color: red">{{ $message }}</small><br>
+            @enderror
 
             {!! Form::submit('Guardar', ['class' => 'btn btn-primary mt-4']) !!}
 

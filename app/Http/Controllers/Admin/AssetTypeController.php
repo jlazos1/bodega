@@ -29,6 +29,13 @@ class AssetTypeController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|unique:asset_types'
+        ], [
+            'name.unique'   => 'Este tipo de Activo ya se encuentra registrado',
+            'name.required' => 'El campo Nombre es obligatorio',
+        ]);
+
         $asset_type = new AssetType([
             'name'  => $request->get('name'),
         ]);
@@ -60,12 +67,18 @@ class AssetTypeController extends Controller
      */
     public function update(Request $request, AssetType $asset_type)
     {
+        $request->validate([
+            'name' => 'required|unique:asset_types'
+        ], [
+            'name.unique'   => 'Este tipo de Activo ya se encuentra registrado',
+            'name.required' => 'El campo Nombre es obligatorio',
+        ]);
+        
         $asset_type->update([
             'name' => $request->get('name')
         ]);
 
         return redirect()->route('admin.asset_types.index')->with('info', 'Se modificaron los datos correctamente');
-
     }
 
     /**
@@ -77,6 +90,5 @@ class AssetTypeController extends Controller
         $asset_type->delete();
 
         return redirect()->route('admin.asset_types.index')->with('info', 'Se eliminó el tipo de activo');
-
     }
 }
