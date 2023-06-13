@@ -1,13 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', 'Movimiento Interno')
+@section('title', 'Stock por Sucursal')
 
 @section('content_header')
-    <h1>Movimiento Interno</h1>
+    <h1>Stock por Sucursal</h1>
 @stop
 
 @section('content')
-    @livewire('admin.outputs-index')
+    @livewire('admin.stock-branch-index')
 @stop
 
 @section('css')

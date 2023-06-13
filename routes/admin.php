@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AssetController;
 use App\Http\Controllers\Admin\AssetModelController;
+use App\Http\Controllers\Admin\AssetSetsController;
 use App\Http\Controllers\Admin\AssetTypeController;
 use App\Http\Controllers\Admin\BranchController;
 use App\Http\Controllers\Admin\CustomerController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Livewire\Admin\DetailsInputsIndex;
 use App\Http\Livewire\Admin\DetailsOutputsIndex;
 use App\Http\Livewire\Admin\InputCreate;
+use App\Http\Livewire\Admin\StockBranchIndex;
 
 Route::get('', [HomeController::class, 'index']);
 
@@ -34,8 +36,10 @@ Route::resource('inputs', InputController::class)->names('admin.inputs');
 Route::resource('outputs', OutputController::class)->names('admin.outputs');
 Route::resource('detalles-inputs', DetailsInputController::class)->names('admin.detalles-inputs');
 Route::resource('detalles-outputs', DetailsOutputController::class)->names('admin.detalles-outputs');
+Route::resource('asset_sets', AssetSetsController::class)->names('admin.asset_sets');
 
-Route::get('input-create', InputCreate::class)->name('input-create');
+
+Route::view('products_branch', 'admin.products_branch.index')->name('products_branch');
 
 Route::get('details-inputs/{input_id}', DetailsInputsIndex::class)->name('details_inputs');
 Route::get('details-outputs/{output_id}', DetailsOutputsIndex::class)->name('details_outputs');

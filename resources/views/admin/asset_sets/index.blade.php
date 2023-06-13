@@ -1,13 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', 'Movimiento Interno')
+@section('title', 'Conjuntos')
 
 @section('content_header')
-    <h1>Movimiento Interno</h1>
+    <h1>Conjuntos</h1>
 @stop
 
 @section('content')
-    @livewire('admin.outputs-index')
+    @livewire('admin.asset-sets-index')
 @stop
 
 @section('css')

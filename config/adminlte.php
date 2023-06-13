@@ -366,22 +366,22 @@ return [
         [
             'text'       => 'users',
             'icon'       => 'fa fa-users fa-fw',
-            'route'        => 'admin.users.index',
+            'route'      => 'admin.users.index',
         ],
         [
             'text'       => 'branches',
             'icon'       => 'fa fa-building fa-fw',
-            'route'        => 'admin.branches.index',
+            'route'      => 'admin.branches.index',
         ],
         [
             'text'       => 'customers',
             'icon'       => 'fa fa-user fa-fw',
-            'route'        => 'admin.customers.index',
+            'route'      => 'admin.customers.index',
         ],
         [
             'text'       => 'providers',
             'icon'       => 'fa fa-truck fa-fw',
-            'route'        => 'admin.providers.index',
+            'route'      => 'admin.providers.index',
         ],
         ['header' => 'ACTIVOS'],
         [
@@ -427,6 +427,11 @@ return [
             'icon_color' => 'cyan',
             'route'      => 'admin.asset_models.index',
         ],
+        [
+            'text'       => 'asset_sets',
+            'icon_color' => 'cyan',
+            'route'      => 'admin.asset_sets.index',
+        ],
         ['header' => 'PRODUCTOS'],
         [
             'text'       => 'products',
@@ -447,8 +452,13 @@ return [
             'text'       => 'outputs',
             'icon_color' => 'red',
             'route'      => 'admin.outputs.index',
-        ]
-        
+        ],
+        [
+            'text'       => 'product_branches',
+            'icon_color' => 'red',
+            'route'        => 'products_branch',
+        ],
+
 
 
     ],

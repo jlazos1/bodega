@@ -17,6 +17,8 @@ return [
     'warning'                       => 'Advertencia',
     'information'                   => 'Información',
     'assets'                        => 'Activos',
+    'asset_types'                    => 'Tipo de Activos',
+    'asset_models'                   => 'Modelo de Activos',
     'slots'                         => 'Slots',
     'screen'                        => 'Pantallas',
     'computers'                     => 'Computadores',
@@ -27,7 +29,8 @@ return [
     'providers'                     => 'Proveedores',
     'customers'                     => 'Clientes',
     'users'                         => 'Usuarios',
-    'inputs'                        => 'Entradas',
-    'outputs'                       => 'Salidas', 
-    'product_types'                 => 'Categorías'
+    'inputs'                        => 'Entrada de Productos',
+    'outputs'                       => 'Movimiento Interno', 
+    'product_types'                 => 'Categorías',
+    'product_branches'              => 'Stock por Sucursal',
 ];

@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Salidas')
+@section('title', 'Movimiento Interno')
 
 @section('content_header')
-    <h1>Editar salida</h1>
+    <h1>Editar Movimiento Interno</h1>
 @stop
 
 @section('content')

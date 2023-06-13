@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Entradas')
+@section('title', 'Movimiento Interno')
 
 @section('content_header')
-    <h1>Productos entrada</h1>
+    <h1>Productos Movimiento Interno</h1>
 @stop
 @section('content')
     @if (session('error'))

@@ -24,7 +24,7 @@ class CustomersIndex extends Component
             ->join('cities', 'customers.city_id', '=', 'cities.id')
             ->select('customers.*', 'cities.name AS city_name')
             ->where('customers.name', 'LIKE', '%' . $this->search . '%')
-            ->where('cities.name', 'LIKE', '%' . $this->search . '%')
+            ->orWhere('cities.name', 'LIKE', '%' . $this->search . '%')
             ->paginate();
 
         return view('livewire.admin.customers-index', compact('customers'));

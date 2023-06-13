@@ -34,7 +34,7 @@ class OutputsIndex extends Component
                     ->orWhere('destination.name', 'LIKE', '%' . $this->search . '%');
             })
             ->when($this->from_date && $this->to_date, function ($query) {
-                $query->whereBetween('inputs.date', [
+                $query->whereBetween('outputs.date', [
                     Carbon::parse($this->from_date)->startOfDay(),
                     Carbon::parse($this->to_date)->endOfDay()
                 ]);

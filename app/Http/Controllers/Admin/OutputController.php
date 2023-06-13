@@ -119,6 +119,13 @@ class OutputController extends Controller
             ]);
 
             return redirect()->route('details_outputs', ['output_id' => $output->id]);
+        } else {
+            $output->update([
+                'date'                  => $request->get('date'),
+                'destination_branch_id' => $request->get('destination_branch_id'),
+            ]);
+
+            return redirect()->route('details_outputs', ['output_id' => $output->id]);
         }
 
         return redirect()->route('details_outputs', ['output_id' => $output->id])->with('error', 'No se pudo realizar la acción');

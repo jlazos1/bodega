@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
 
             $table->foreignId('slot_id')->constrained('assets', 'id');
-            $table->foreignId('screen_id')->constrained('assets', 'id');
-            $table->foreignId('pc_id')->constrained('assets', 'id');
-            $table->foreignId('card_id')->constrained('assets', 'id');
+            $table->foreignId('screen_id')->constrained('assets', 'id')->nullable();
+            $table->foreignId('pc_id')->constrained('assets', 'id')->nullable();
+            $table->foreignId('card_id')->constrained('assets', 'id')->nullable();
 
             $table->timestamps();
         });
