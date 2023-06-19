@@ -15,9 +15,7 @@ return new class extends Migration
             $table->id();
             $table->date('date');
             $table->text('details');
-
-            $table->foreignId('asset_id')->constrained();
-
+            $table->foreignId('machine_id')->constrained();
             $table->timestamps();
         });
     }

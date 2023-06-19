@@ -14,15 +14,12 @@ return new class extends Migration
         Schema::create('inputs', function (Blueprint $table) {
             $table->id();
             $table->date('date');
-            $table->string('doc_number');
+            $table->string('doc_number')->nullable();
             $table->double('net_amount');
             $table->double('iva');
-
-            $table->foreignId('document_type_id')->constrained();
+            $table->foreignId('document_type_id')->constrained()->nullable();
             $table->foreignId('provider_id')->constrained();
             $table->foreignId('branch_id')->constrained();
-
-
             $table->timestamps();
         });
     }

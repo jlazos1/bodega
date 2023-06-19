@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sets', function (Blueprint $table) {
+        Schema::create('details_machine_relocations', function (Blueprint $table) {
             $table->id();
-
-            $table->foreignId('slot_id')->constrained('assets', 'id');
-            $table->foreignId('screen_id')->constrained('assets', 'id')->nullable();
-            $table->foreignId('pc_id')->constrained('assets', 'id')->nullable();
-            $table->foreignId('card_id')->constrained('assets', 'id')->nullable();
-
+            $table->foreignId('machine_relocation_id')->constrained();
+            $table->foreignId('machine_id')->constrained();
             $table->timestamps();
         });
     }
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sets');
+        Schema::dropIfExists('details_machine_relocations');
     }
 };

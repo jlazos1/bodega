@@ -14,11 +14,8 @@ return new class extends Migration
         Schema::create('relocations', function (Blueprint $table) {
             $table->id();
             $table->date('date');
-
-            $table->foreignId('asset_id')->constrained();
             $table->foreignId('origin')->constrained('branches', 'id');
             $table->foreignId('destination')->constrained('branches', 'id');
-
             $table->timestamps();
         });
     }

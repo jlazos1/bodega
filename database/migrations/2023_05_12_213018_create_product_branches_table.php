@@ -14,10 +14,8 @@ return new class extends Migration
         Schema::create('product_branches', function (Blueprint $table) {
             $table->id();
             $table->integer('quantity');
-
             $table->foreignId('product_id')->constrained();
             $table->foreignId('branch_id')->constrained();
-
             $table->timestamps();
         });
     }

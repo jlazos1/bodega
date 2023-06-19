@@ -15,10 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name', 30);
             $table->double('value');
-
             $table->foreignId('branch_id')->constrained();
             $table->foreignId('asset_model_id')->constrained();
-
             $table->timestamps();
         });
     }

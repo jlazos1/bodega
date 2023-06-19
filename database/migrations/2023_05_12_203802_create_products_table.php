@@ -14,10 +14,7 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name', 35);
-            $table->double('price');
-
             $table->foreignId('product_type_id')->constrained();
-
             $table->timestamps();
         });
     }

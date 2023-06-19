@@ -10,6 +10,8 @@ class Relocation extends Model
     use HasFactory;
 
     protected $fillable = [
-        'date'
+        'date',
+        'origin', 
+        'destination'
     ];
 }

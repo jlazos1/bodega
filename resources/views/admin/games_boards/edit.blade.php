@@ -1,0 +1,42 @@
+@extends('adminlte::page')
+
+@section('title', 'Producto')
+
+@section('content_header')
+    <h1>Editar Producto</h1>
+@stop
+
+@section('content')
+
+    <div class="card">
+        <div class="card-body">
+            {!! Form::token() !!}
+            {!! Form::open(['route' => ['admin.game-boards.update', $game_board], 'method' => 'put']) !!}
+
+            {!! Form::label('name', 'Nombre', ['class' => 'h5']) !!}
+            {!! Form::text('name', $game_board->name, ['class' => 'form-control mb-2']) !!}
+            @error('name')
+                <small style="color: red">{{ $message }}</small><br>
+            @enderror
+
+            {!! Form::label('description', 'Descripción', ['class' => 'h5']) !!}
+            {!! Form::textarea('description', $game_board->description, ['class' => 'form-control mb-2']) !!}
+            @error('description')
+                <small style="color: red">{{ $message }}</small><br>
+            @enderror
+         
+            {!! Form::submit('Guardar', ['class' => 'btn btn-primary mt-4']) !!}
+
+            {!! Form::close() !!}
+
+        </div>
+    </div>
+@stop
+
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop
+
+@section('js')
+    @livewireScripts
+@stop

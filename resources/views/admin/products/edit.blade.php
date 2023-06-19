@@ -19,12 +19,6 @@
                 <small style="color: red">{{ $message }}</small><br>
             @enderror
 
-            {!! Form::label('price', 'Valor', ['class' => 'h5']) !!}
-            {!! Form::number('price', $product->price, ['class' => 'form-control mb-2']) !!}
-            @error('price')
-                <small style="color: red">{{ $message }}</small><br>
-            @enderror
-
             {!! Form::label('product_type_id', 'Categoría', ['class' => 'h5']) !!}
             {!! Form::select('product_type_id', $product_types, $product->product_type_id, [
                 'class' => 'form-control mb-2',

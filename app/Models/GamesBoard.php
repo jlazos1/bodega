@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class AssetLoan extends Model
+class GamesBoard extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'asset_id',
-        'loan_id'
+        'name', 
+        'description'
     ];
 }

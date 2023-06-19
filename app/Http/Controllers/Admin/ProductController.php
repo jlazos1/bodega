@@ -34,17 +34,14 @@ class ProductController extends Controller
     {
         $request->validate([
             'name'              => 'required',
-            'price'             => 'required',
             'product_type_id'   => 'required',
         ], [
             'name.required'             => 'El campo Nombre es obligatorio',
-            'price.required'            => 'El campo Valor es obligatorio',
             'product_type_id.required'  => 'El campo Tipo de Producto es obligatorio',
         ]);
 
         $product = new Product([
             'name'              => $request->get('name'),
-            'price'             => $request->get('price'),
             'product_type_id'   => $request->get('product_type_id'),
         ]);
         $product->save();
@@ -79,17 +76,14 @@ class ProductController extends Controller
     {
         $request->validate([
             'name'              => 'required',
-            'price'             => 'required',
             'product_type_id'   => 'required',
         ], [
             'name.required'             => 'El campo Nombre es obligatorio',
-            'price.required'            => 'El campo Valor es obligatorio',
             'product_type_id.required'  => 'El campo Tipo de Producto es obligatorio',
         ]);
         
         $product->update([
             'name'              => $request->get('name'),
-            'price'             => $request->get('price'),
             'product_type_id'   => $request->get('product_type_id'),
         ]);
 

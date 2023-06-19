@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Branch;
 use App\Models\DetailsInput;
 use App\Models\Input;
 use App\Models\ProductBranch;
@@ -61,6 +62,7 @@ class DetailsInputController extends Controller
         ]);
 
         $branch_id = DB::table('inputs')->where('id', $request->get('input_id'))->first()->branch_id;
+        //$branch_id = Branch::find($request->get('input_id'))->id;
         $product_branch = ProductBranch::where('product_id', $request->get('product_id'))
             ->where('branch_id', $branch_id)
             ->first();

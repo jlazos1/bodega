@@ -9,8 +9,6 @@ use App\Models\ProductBranch;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-use function PHPUnit\Framework\isNull;
-
 class DetailsOutputController extends Controller
 {
     /**

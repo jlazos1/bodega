@@ -31,11 +31,7 @@
                                 <td>{{ $prd_type->name }}</td>
                                 <td width="10px">
                                     <a href="{{ route('admin.product_types.edit', $prd_type->id) }}" class="btn btn-primary fa fa-pen-to-square"></a>
-                                    <form action="{{ route('admin.product_types.destroy', $prd_type->id) }}" method="POST">
-                                        @method('DELETE')
-                                        @csrf
-                                        <button class="btn btn-danger fa fa-trash"></button>
-                                    </form>
+                                    
                                 </td>
                             </tr>
                         @endforeach

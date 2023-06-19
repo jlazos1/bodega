@@ -39,7 +39,7 @@
 
         {!! Form::close() !!}
 
-        <a href="{{ route('admin.outputs.index') }}" class="btn btn-danger">Finalizar</a>
+        
 
         <div>
             <table class="table table-striped mt-5">
@@ -66,6 +66,9 @@
                     @endforeach
                 </tbody>
             </table>
+        </div>
+        <div>
+            <a href="{{ route('admin.outputs.index') }}" class="btn btn-danger float-right">Finalizar</a>
         </div>
     </div>
 @stop

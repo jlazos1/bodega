@@ -7,34 +7,36 @@
 @endif
 
 <div>
-    <a href="{{ route('admin.asset_sets.create') }}" class="btn btn-primary mb-2">Nuevo</a>
+    <a href="{{ route('admin.machines.create') }}" class="btn btn-primary mb-2">Nuevo</a>
     <div class="card">
         <div class="card-header">
             <input wire:model="search" type="text" class="form-control" placeholder="Filtrar">
         </div>
 
 
-        @if ($asset_sets->count())
+        @if ($machines->count())
             <div class="card-body">
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>Máquina</th>
-                            <th>Pantalla</th>
-                            <th>Computador</th>
-                            <th>IO Board</th>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Sucursal</th>
+                            <th>T. Juegos</th>
+                            <th>Código QR</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($asset_sets as $set)
+                        @foreach ($machines as $machine)
                             <tr>
-                                <td>{{ $set->slot_name}}</td>
-                                <td>{{ $set->screen_name }}</td>
-                                <td>{{ $set->pc_name }}</td>
-                                <td>{{ $set->card_name }}</td>
+                                <td>{{ $machine->id }}</td>
+                                <td>{{ $machine->name }}</td>
+                                <td>{{ $machine->branch_name }}</td>
+                                <td>{{ $machine->games_board_name }}</td>
+                                <td> <a href="{{ route('qrcode', [$machine->id]) }}" target="_blank">Ver</a></td>
                                 <td width="10px">
-                                    <a href="{{ route('admin.asset_sets.edit', $set->id) }}"
+                                    <a href="{{ route('admin.machines.edit', [$machine->id]) }}"
                                         class="btn btn-primary fa fa-pen-to-square"></a>
                                 </td>
                             </tr>
@@ -43,7 +45,7 @@
                 </table>
             </div>
             <div class="card-footer">
-                {{ $asset_sets->links() }}
+                {{ $machines->links() }}
             </div>
         @else
             <div class="card-body">

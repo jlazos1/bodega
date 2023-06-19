@@ -1,13 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', 'Conjuntos')
+@section('title', 'Tarjetas de Juegos')
 
 @section('content_header')
-    <h1>Conjuntos</h1>
+    <h1>Tarjetas de Juegos</h1>
 @stop
 
 @section('content')
-    @livewire('admin.asset-sets-index')
+    @livewire('admin.games-boards-index')
 @stop
 
 @section('css')

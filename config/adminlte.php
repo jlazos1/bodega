@@ -383,35 +383,23 @@ return [
             'icon'       => 'fa fa-truck fa-fw',
             'route'      => 'admin.providers.index',
         ],
-        ['header' => 'ACTIVOS'],
+        ['header' => 'Máquinas'],   
         [
-            'text'       => 'assets',
-            'icon_color' => 'cyan',
-            'url'        => '#',
-            'submenu'    => [
-                [
-                    'text'       => 'all_assets',
-                    'url'        => '#',
-                ],
-                [
-                    'text'       => 'slots',
-                    'url'        => '#',
-                ],
-                [
-                    'text'       => 'screen',
-                    'url'        => '#',
-                ],
-                [
-                    'text'       => 'computers',
-                    'url'        => '#',
-                ],
-                [
-                    'text'       => 'boards',
-                    'url'        => '#',
-                ],
-            ]
-
+            'text'       => 'games_boards',
+            'icon_color' => 'green',
+            'route'      => 'admin.game-boards.index',
         ],
+        [
+            'text'       => 'machines',
+            'icon_color' => 'green',
+            'route'      => 'admin.machines.index',
+        ],
+        [
+            'text'       => 'machines_relocations',
+            'icon_color' => 'green',
+            'route'      => 'admin.machines-relocations.index',
+        ],
+        ['header' => 'ACTIVOS'],                
         [
             'text'       => 'assets',
             'icon_color' => 'cyan',
@@ -428,9 +416,9 @@ return [
             'route'      => 'admin.asset_models.index',
         ],
         [
-            'text'       => 'asset_sets',
+            'text'       => 'relocations',
             'icon_color' => 'cyan',
-            'route'      => 'admin.asset_sets.index',
+            'route'      => 'admin.relocations.index',
         ],
         ['header' => 'PRODUCTOS'],
         [

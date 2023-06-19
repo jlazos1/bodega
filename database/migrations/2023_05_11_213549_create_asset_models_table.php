@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('name', 30);
             $table->text('description', 600);
             $table->foreignId('asset_type_id')->constrained();
-
             $table->timestamps();
 
         });
