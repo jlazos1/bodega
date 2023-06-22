@@ -10,7 +10,9 @@
     <a href="{{ route('admin.relocations.create') }}" class="btn btn-primary mb-2">Nuevo</a>
     <div class="card">
         <div class="card-header">
-            <input wire:model="search" type="text" class="form-control" placeholder="Filtrar">
+            <input wire:model="search" type="text" class="form-control mb-2" placeholder="Filtrar">
+            <input wire:model="from_date" type="date" class="form-control mb-2" placeholder="Filtrar">
+            <input wire:model="to_date" type="date" class="form-control" placeholder="Filtrar">
         </div>
 
         @if ($relocations->count())

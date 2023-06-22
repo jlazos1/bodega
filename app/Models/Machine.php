@@ -14,5 +14,6 @@ class Machine extends Model
         'value',
         'branch_id',
         'games_board_id',
+        'state'
     ];
 }

@@ -35,6 +35,16 @@ class DetailsInputController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'product_id'        => 'required',
+            'quantity'          => 'required',
+            'price'             => 'required',
+        ], [
+            'product_id.required'       => 'El campo Producto es obligatorio',
+            'quantity.required'         => 'El campo Cantidad es obligatorio',
+            'price.required'            => 'El campo Precio Unitario es obligatorio',
+        ]);
+
         $details = DetailsInput::where('product_id', $request->get('product_id'))
             ->where('input_id', $request->get('input_id'))
             ->first();

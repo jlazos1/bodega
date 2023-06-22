@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('doc_number')->nullable();
             $table->double('net_amount');
             $table->double('iva');
-            $table->foreignId('document_type_id')->constrained()->nullable();
-            $table->foreignId('provider_id')->constrained();
+            $table->foreignId('document_type_id')->nullable()->constrained();
+            $table->foreignId('provider_id')->nullable()->constrained();
             $table->foreignId('branch_id')->constrained();
             $table->timestamps();
         });

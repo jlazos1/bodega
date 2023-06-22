@@ -16,6 +16,7 @@ return new class extends Migration
             $table->date('date');
             $table->text('details');
             $table->foreignId('machine_id')->constrained();
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

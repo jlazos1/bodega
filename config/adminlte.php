@@ -383,7 +383,7 @@ return [
             'icon'       => 'fa fa-truck fa-fw',
             'route'      => 'admin.providers.index',
         ],
-        ['header' => 'Máquinas'],   
+        ['header' => 'Máquinas'],
         [
             'text'       => 'games_boards',
             'icon_color' => 'green',
@@ -399,7 +399,12 @@ return [
             'icon_color' => 'green',
             'route'      => 'admin.machines-relocations.index',
         ],
-        ['header' => 'ACTIVOS'],                
+        [
+            'text'       => 'loans',
+            'icon_color' => 'green',
+            'route'      => 'admin.loans.index',
+        ],
+        ['header' => 'ACTIVOS'],
         [
             'text'       => 'assets',
             'icon_color' => 'cyan',

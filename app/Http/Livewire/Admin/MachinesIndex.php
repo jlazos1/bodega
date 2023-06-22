@@ -21,13 +21,25 @@ class MachinesIndex extends Component
 
     public function render()
     {
+        $search = $this->search;
+
         $machines = DB::table('machines')
-            ->select('machines.*', 'games_boards.name AS games_board_name', 'branches.name AS branch_name')
+            ->select([
+                'machines.*',
+                'games_boards.name AS games_board_name',
+                DB::raw("CASE WHEN machines.state = 1 THEN 'Arrendada' ELSE branches.name END AS branch_name")
+            ])
             ->join('games_boards', 'machines.games_board_id', '=', 'games_boards.id')
             ->join('branches', 'branches.id', '=', 'machines.branch_id')
-            ->where('machines.name', 'LIKE', '%' . $this->search . '%')
-            ->orWhere('games_boards.name', 'LIKE', '%' . $this->search . '%')
-            ->orWhere('branches.name', 'LIKE', '%' . $this->search . '%')
+            ->where(function ($query) use ($search) {
+                $query->where('machines.name', 'LIKE', '%' . $search . '%')
+                    ->orWhere('games_boards.name', 'LIKE', '%' . $search . '%')
+                    ->orWhere('branches.name', 'LIKE', '%' . $search . '%')
+                    ->orWhere(function ($query) use ($search) {
+                        $query->where('machines.state', 1)
+                            ->where('branches.name', 'LIKE', '%' . $search . '%');
+                    });
+            })
             ->paginate();
 
         return view('livewire.admin.machines-index', compact('machines'));

@@ -3,15 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\DetailsMachineRelocation;
+use App\Models\Loan;
 use App\Models\Machine;
-use App\Models\MachineRelocation;
+use App\Models\MachineLoan;
 use Illuminate\Http\Request;
 
-class DetailsMachinesRelocationController extends Controller
+class DetailsLoansController extends Controller
 {
-    public $select = [];
-
     /**
      * Display a listing of the resource.
      */
@@ -39,23 +37,25 @@ class DetailsMachinesRelocationController extends Controller
             'seleccion.required'    => 'Seleccione por lo menos una máquina',
         ]);
 
-        $relo = MachineRelocation::find($request->get('relocation_id'));
+        $loan = Loan::find($request->get('loan_id'));
 
         foreach ($request->get('seleccion') as $sel) {
 
-            $rel_as = new DetailsMachineRelocation([
-                'machine_relocation_id' => $relo->id,
-                'machine_id'            => $sel
+            $detail = new MachineLoan([
+                'machine_id'    => $sel,
+                'loan_id'       => $loan->id
             ]);
-            $rel_as->save();
+            $detail->save();
 
+            //state 1 para arriendo
             $machine = Machine::find($sel);
             $machine->update([
-                'branch_id' => $relo->destination,
+                'state' => 1,
             ]);
         }
 
-        return redirect()->route('details-machine-relocations', ['id' => $request->get('relocation_id')])->with('correct', 'Máquina agregada correctamente');
+        return redirect()->route('details_loans', ['loan_id' => $request->get('loan_id')])->with('correct', 'Máquina agregada correctamente');
+
     }
 
     /**
@@ -87,16 +87,16 @@ class DetailsMachinesRelocationController extends Controller
      */
     public function destroy(string $id)
     {
-        $detail = DetailsMachineRelocation::find($id);
+        $detail = MachineLoan::find($id);
         $machine = Machine::find($detail->machine_id);
-        $relocation = MachineRelocation::find($detail->machine_relocation_id);
+        $loan = Loan::find($detail->loan_id);
 
         $machine->update([
-            'branch_id'     => $relocation->origin,
+            'state'     => 0,
         ]);
         $detail->delete();
 
-        return redirect()->route('details-machine-relocations', ['id' => $relocation->id])->with('correct', 'Máquina eliminada correctamente');
+        return redirect()->route('details_loans', ['loan_id' => $loan->id])->with('correct', 'Máquina eliminada correctamente');
 
     }
 }

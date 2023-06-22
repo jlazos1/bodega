@@ -2,12 +2,12 @@
 
 namespace App\Http\Livewire\Admin;
 
+use App\Models\Input;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Carbon\Carbon;
-use Illuminate\Database\Query\Builder;
-use Illuminate\Support\Facades\Date;
+
 
 class InputsIndex extends Component
 {
@@ -28,8 +28,8 @@ class InputsIndex extends Component
     public function render()
     {
         $inputs = DB::table('inputs')
-            ->join('providers', 'inputs.provider_id', '=', 'providers.id')
-            ->join('document_types', 'inputs.document_type_id', '=', 'document_types.id')
+            ->leftJoin('providers', 'inputs.provider_id', '=', 'providers.id')
+            ->leftJoin('document_types', 'inputs.document_type_id', '=', 'document_types.id')
             ->join('branches', 'inputs.branch_id', '=', 'branches.id')
             ->select('inputs.*', 'providers.name AS provider_name', 'document_types.name AS document_type_name', 'branches.name AS branch_name')
             ->where(function ($query) {

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->double('amount');
             $table->date('loan_date');
             $table->date('return_date');
-            $table->foreignId('loan_state_id')->constrained();
+            $table->foreignId('loan_state_id')->default(1)->constrained();
             $table->foreignId('customer_id')->constrained();
             $table->timestamps();
         });

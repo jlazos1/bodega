@@ -25,12 +25,12 @@ class DetailsInputsIndex extends Component
     public function render()
     {
         $input = $this->input;
-        $products = Product::select(DB::raw("CONCAT(id, ' - ', name) AS name_id, id"))->get();
+        $products = Product::select(DB::raw("CONCAT(id, ' - ', name) AS name_id, id"))->pluck('name_id', 'id');
         $productsAdd = DB::table('details_inputs')
             ->join('products', 'products.id', '=', 'details_inputs.product_id')
             ->select('details_inputs.*', 'products.name AS product_name')
             ->where('details_inputs.input_id', $this->input->id)
-            ->get();
+            ->paginate();
         //$productsAdd = DetailsInput::where('input_id');    
 
         return view('livewire.admin.details-inputs-index', compact('input', 'products', 'productsAdd'));

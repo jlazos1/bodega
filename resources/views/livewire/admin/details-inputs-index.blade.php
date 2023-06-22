@@ -14,26 +14,36 @@
         {!! Form::label('productos', 'Productos', ['class' => 'h5 display: block mt-4 mb-4']) !!}
 
         {!! Form::label('product_id', 'Nombre Producto', ['class' => 'h5']) !!}
-        <select name="product_id" id="product_id" class="form-control">
-            <option value="0">Seleccione un Producto</option>
-            @foreach ($products as $p)
-                <option value="{{ $p->id }}">{{ $p->name_id }}</option>
-            @endforeach
-        </select>
+        {!! Form::select('product_id', $products, null, [
+            'class' => 'form-control mb-2 select-product',
+            'placeholder' => 'Seleccione un producto',
+        ]) !!}
+        @error('product_id')
+            <small style="color: red">{{ $message }}</small><br>
+        @enderror
+
 
         {!! Form::label('quantity', 'Cantidad', ['class' => 'h5']) !!}
         {!! Form::number('quantity', null, ['class' => 'form-control mb-2']) !!}
+        @error('quantity')
+            <small style="color: red">{{ $message }}</small><br>
+        @enderror
+
 
         {!! Form::label('price', 'Precio Unitario', ['class' => 'h5']) !!}
         {!! Form::number('price', null, ['class' => 'form-control mb-2']) !!}
+        @error('price')
+            <small style="color: red">{{ $message }}</small><br>
+        @enderror
+
 
         {!! Form::hidden('input_id', $input->id, ['class' => 'form-control mb-2']) !!}
 
         {!! Form::submit('Agregar', ['class' => 'btn btn-primary mt-4']) !!}
- 
+
         {!! Form::close() !!}
 
-        
+
 
         <div>
             <table class="table table-striped mt-5">
@@ -49,7 +59,7 @@
                 <tbody>
                     @foreach ($productsAdd as $product)
                         <tr>
-                            <td>{{ $product->product_name}}</td>
+                            <td>{{ $product->product_name }}</td>
                             <td>{{ $product->quantity }}</td>
                             <td>{{ $product->price }}</td>
                             <td>{{ $product->price * $product->quantity }}</td>
@@ -66,7 +76,7 @@
             </table>
         </div>
         <div>
-            <a href="{{ route('admin.inputs.index')}}" class="btn btn-danger float-right">Finalizar</a>
+            <a href="{{ route('admin.inputs.index') }}" class="btn btn-danger float-right">Finalizar</a>
         </div>
     </div>
 @stop
@@ -79,5 +89,10 @@
 
 @section('js')
     @livewireScripts
+    <script>
+        $(document).ready(function() {
+            $('.select-product').select2();
+        });
+    </script>
 
 @stop

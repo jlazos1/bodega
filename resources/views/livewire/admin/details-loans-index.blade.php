@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Traslados')
+@section('title', 'Arriendos')
 
 @section('content_header')
-    <h1>Traslados</h1>
+    <h1>Arriendos</h1>
 @stop
 @section('content')
     @if (session('error'))
@@ -16,23 +16,18 @@
             {{ session('correct') }}
         </div>
     @endif
-    <div class="card pr-4 pl-4 pb-5">
+    <div class="card pr-4 pl-4 pb-5 pt-3">
         {!! Form::token() !!}
-        {!! Form::open(['route' => 'admin.machines-details-relocations.store', 'method' => 'post']) !!}
+        {!! Form::open(['route' => 'admin.detalles-loans.store', 'method' => 'post']) !!}
 
-        {!! Form::label('machines', 'Máquinas', ['class' => 'h5 display: block mt-4 mb-4']) !!}
-
-        {!! Form::label('machine_id', 'Nombre Activo', ['class' => 'h5']) !!}
+        {!! Form::label('machine_id', 'Máquina', ['class' => 'h5']) !!}
         {!! Form::select('machine_id', $machines, null, [
             'class' => 'form-control mb-2 select-asset',
             'multiple' => 'multiple',
             'name' => 'seleccion[]',
         ]) !!}
-        @error('seleccion')
-            <small style="color: red">{{ $message }}</small><br>
-        @enderror
 
-        {!! Form::hidden('relocation_id', $relocation_id, ['class' => 'form-control mb-2']) !!}
+        {!! Form::hidden('loan_id', $loan_id, ['class' => 'form-control mb-2']) !!}
 
         {!! Form::submit('Agregar', ['class' => 'btn btn-primary mt-4 mb-3']) !!}
 
@@ -40,6 +35,8 @@
 
 
         <div>
+            {!! Form::label('machines', 'Máquinas', ['class' => 'h5 display: block mt-4 mb-4']) !!}
+
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -54,8 +51,7 @@
                             <td>{{ $machine->machine_id }}</td>
                             <td>{{ $machine->machine_name }}</td>
                             <td width="10px">
-                                <form action="{{ route('admin.machines-details-relocations.destroy', $machine->id) }}"
-                                    method="POST">
+                                <form action="{{ route('admin.detalles-loans.destroy', $machine->id) }}" method="POST">
                                     @method('DELETE')
                                     @csrf
                                     <button class="btn btn-danger fa fa-trash"></button>
@@ -67,7 +63,7 @@
             </table>
         </div>
         <div>
-            <a href="{{ route('admin.machines-relocations.index') }}" class="btn btn-danger float-right">Finalizar</a>
+            <a href="{{ route('admin.loans.index') }}" class="btn btn-danger float-right">Finalizar</a>
         </div>
     </div>
 @stop

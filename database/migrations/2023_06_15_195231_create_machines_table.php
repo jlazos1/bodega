@@ -13,13 +13,11 @@ return new class extends Migration
     {
         Schema::create('machines', function (Blueprint $table) {
             $table->id();
-
             $table->string('name', 30);
             $table->double('value');
-
+            $table->integer('state')->default(0);
             $table->foreignId('branch_id')->constrained();
             $table->foreignId('games_board_id')->constrained();
-
             $table->timestamps();
         });
     }
