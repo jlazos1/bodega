@@ -7,7 +7,6 @@
 @endif
 
 <div>
-    <a href="{{ route('admin.inputs.create') }}" class="btn btn-primary mb-2">Nuevo</a>
     <div class="card">
         <div class="card-header">
             <input wire:model="search" type="text" class="form-control mb-2" placeholder="Filtrar">
@@ -15,7 +14,7 @@
             <input wire:model="to_date" type="date" class="form-control" placeholder="Filtrar">
         </div>
 
-        
+
         @if ($inputs->count())
             <div class="card-body">
                 <table class="table table-striped">
@@ -36,13 +35,16 @@
                             <tr>
                                 <td>{{ $input->id }}</td>
                                 <td>{{ $input->provider_name }}</td>
-                                <td>{{ $input->branch_name}}</td>
-                                <td>{{ $input->document_type_name}}</td>
-                                <td>{{ $input->doc_number}}</td>
-                                <td>{{ \Carbon\Carbon::parse($input->date)->format('d-m-Y')}}</td>
-                                <td>{{ $input->net_amount}}</td>
+                                <td>{{ $input->branch_name }}</td>
+                                <td>{{ $input->document_type_name }}</td>
+                                <td>{{ $input->doc_number }}</td>
+                                <td>{{ \Carbon\Carbon::parse($input->date)->format('d-m-Y') }}</td>
+                                <td>{{ $input->net_amount }}</td>
                                 <td width="10px">
-                                    <a href="{{ route('admin.inputs.edit', [$input->id]) }}" class="btn btn-primary fa fa-pen-to-square"></a>
+                                    @can('admin.inputs.edit')
+                                        <a href="{{ route('admin.inputs.edit', [$input->id]) }}"
+                                            class="btn btn-primary fa fa-pen-to-square"></a>
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach

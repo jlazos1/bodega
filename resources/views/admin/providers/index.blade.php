@@ -3,6 +3,10 @@
 @section('title', 'Proveedores')
 
 @section('content_header')
+    @can('admin.providers.create')
+        <a href="{{ route('admin.providers.create') }}" class="btn btn-primary mb-2 float-right">Nuevo</a>
+    @endcan
+
     <h1>Lista de Proveedores</h1>
 @stop
 

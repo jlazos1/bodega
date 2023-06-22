@@ -3,6 +3,9 @@
 @section('title', 'Modelos de Activos')
 
 @section('content_header')
+    @can('admin.asset_models.create')
+        <a href="{{ route('admin.asset_models.create') }}" class="btn btn-primary mb-2 float-right">Nuevo</a>
+    @endcan
     <h1>Modelos de Activos</h1>
 @stop
 

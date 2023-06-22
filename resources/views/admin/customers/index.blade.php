@@ -3,6 +3,9 @@
 @section('title', 'Clientes')
 
 @section('content_header')
+    @can('admin.customers.create')
+        <a href="{{ route('admin.customers.create') }}" class="btn btn-primary mb-2 float-right">Nuevo</a>
+    @endcan
     <h1>Lista de Clientes</h1>
 @stop
 

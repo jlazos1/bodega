@@ -3,6 +3,9 @@
 @section('title', 'Tarjetas de Juegos')
 
 @section('content_header')
+    @can('admin.game-boards.create')
+        <a href="{{ route('admin.game-boards.create') }}" class="btn btn-primary mb-2 float-right">Nuevo</a>
+    @endcan
     <h1>Tarjetas de Juegos</h1>
 @stop
 

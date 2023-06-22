@@ -3,6 +3,9 @@
 @section('title', 'Traslados')
 
 @section('content_header')
+    @can('admin.machines-relocations.create')
+        <a href="{{ route('admin.machines-relocations.create') }}" class="btn btn-primary mb-2  float-right">Nuevo</a>
+    @endcan
     <h1>Traslados</h1>
 @stop
 

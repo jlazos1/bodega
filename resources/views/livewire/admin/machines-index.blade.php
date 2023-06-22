@@ -7,7 +7,6 @@
 @endif
 
 <div>
-    <a href="{{ route('admin.machines.create') }}" class="btn btn-primary mb-2">Nuevo</a>
     <div class="card">
         <div class="card-header">
             <input wire:model="search" type="text" class="form-control" placeholder="Filtrar">
@@ -36,8 +35,10 @@
                                 <td>{{ $machine->games_board_name }}</td>
                                 <td> <a href="{{ route('qrcode', [$machine->id]) }}" target="_blank">Ver</a></td>
                                 <td width="10px">
-                                    <a href="{{ route('admin.machines.edit', [$machine->id]) }}"
-                                        class="btn btn-primary fa fa-pen-to-square"></a>
+                                    @can('admin.machines.edit')
+                                        <a href="{{ route('admin.machines.edit', [$machine->id]) }}"
+                                            class="btn btn-primary fa fa-pen-to-square"></a>
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach

@@ -7,7 +7,6 @@
 @endif
 
 <div>
-    <a href="{{ route('admin.product_types.create') }}" class="btn btn-primary mb-2">Nuevo</a>
     <div class="card">
         <div class="card-header">
             <input wire:model="search" type="text" class="form-control" placeholder="Filtrar">
@@ -30,8 +29,10 @@
                                 <td>{{ $prd_type->id }}</td>
                                 <td>{{ $prd_type->name }}</td>
                                 <td width="10px">
-                                    <a href="{{ route('admin.product_types.edit', $prd_type->id) }}" class="btn btn-primary fa fa-pen-to-square"></a>
-                                    
+                                    @can('admin.product_types.edit')
+                                        <a href="{{ route('admin.product_types.edit', $prd_type->id) }}"
+                                            class="btn btn-primary fa fa-pen-to-square"></a>
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach

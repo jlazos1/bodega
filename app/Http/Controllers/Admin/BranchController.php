@@ -9,9 +9,13 @@ use Illuminate\Http\Request;
 
 class BranchController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('can:admin.branches.index')->only('index');
+        $this->middleware('can:admin.branches.create')->only('create', 'store');
+        $this->middleware('can:admin.branches.edit')->only('edit', 'update');
+    }
+
     public function index()
     {
         return view('admin.branches.index');

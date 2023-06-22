@@ -3,6 +3,9 @@
 @section('title', 'Tipos de Activos')
 
 @section('content_header')
+    @can('admin.asset_types.create')
+        <a href="{{ route('admin.asset_types.create') }}" class="btn btn-primary mb-2 float-right">Nuevo</a>
+    @endcan
     <h1>Tipos de Activos</h1>
 @stop
 

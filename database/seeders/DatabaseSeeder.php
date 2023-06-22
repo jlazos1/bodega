@@ -30,7 +30,6 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             CitySeeder::class,
             BranchSeeder::class,
-            DocumentType::class,
         ]);
     }
 }

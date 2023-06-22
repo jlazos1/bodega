@@ -7,7 +7,7 @@
 @endif
 
 <div>
-    <a href="{{ route('admin.branches.create') }}" class="btn btn-primary mb-2">Nuevo</a>
+
     <div class="card">
         <div class="card-header">
             <input wire:model="search" type="text" class="form-control" placeholder="Filtrar">
@@ -36,7 +36,10 @@
                                 <td>{{ $branch->city_name }}</td>
                                 <td>{{ $branch->phone }}</td>
                                 <td width="10px">
-                                    <a href="{{ route('admin.branches.edit', $branch->id) }}" class="btn btn-primary fa fa-pen-to-square"></a>
+                                    @can('admin.branches.edit')
+                                        <a href="{{ route('admin.branches.edit', $branch->id) }}"
+                                            class="btn btn-primary fa fa-pen-to-square"></a>
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach

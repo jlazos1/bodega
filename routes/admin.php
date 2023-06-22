@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\InputController;
 use App\Http\Controllers\Admin\LoansController;
 use App\Http\Controllers\Admin\MachinesController;
 use App\Http\Controllers\Admin\MachinesRelocationController;
+use App\Http\Controllers\Admin\MaintenancesController;
 use App\Http\Controllers\Admin\OutputController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductTypeController;
@@ -53,6 +54,8 @@ Route::resource('machines-relocations', MachinesRelocationController::class)->na
 Route::resource('games_boards', GamesBoardsController::class)->names('admin.game-boards');
 Route::resource('loans', LoansController::class)->names('admin.loans');
 Route::resource('detalles-loans', DetailsLoansController::class)->names('admin.detalles-loans');
+Route::resource('maintenances', MaintenancesController::class)->names('admin.maintenances');
+
 
 Route::view('products_branch', 'admin.products_branch.index')->name('products_branch');
 
@@ -65,7 +68,5 @@ Route::get('details-inputs/{input_id}', DetailsInputsIndex::class)->name('detail
 Route::get('details-loans/{loan_id}', DetailsLoansIndex::class)->name('details_loans');
 Route::get('details-outputs/{output_id}', DetailsOutputsIndex::class)->name('details_outputs');
 Route::get('details-machine-relocation/}', DetailsMachinesRelocationIndex::class)->name('details-machine-relocations');
-
-
 
 Route::get('qrcode/{url}', [AssetController::class, 'qrcode'])->name('qrcode');

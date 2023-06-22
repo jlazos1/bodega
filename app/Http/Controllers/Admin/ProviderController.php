@@ -9,9 +9,13 @@ use Illuminate\Http\Request;
 
 class ProviderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('can:admin.providers.index')->only('index');
+        $this->middleware('can:admin.providers.create')->only('create', 'store');
+        $this->middleware('can:admin.providers.edit')->only('edit', 'update');
+    }
+    
     public function index()
     {
         return view('admin.providers.index');

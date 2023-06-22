@@ -11,9 +11,14 @@ use Illuminate\Support\Facades\DB;
 
 class RelocationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('can:admin.relocations.index')->only('index');
+        $this->middleware('can:admin.relocations.create')->only('create', 'store');
+        $this->middleware('can:admin.relocations.edit')->only('edit', 'update');
+        $this->middleware('can:admin.relocations.show')->only('show');
+    }
+
     public function index()
     {
         return view('admin.relocations.index');

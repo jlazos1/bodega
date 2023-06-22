@@ -14,9 +14,14 @@ use function PHPUnit\Framework\isNull;
 
 class DetailsInputController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('can:admin.detalles-inputs.create')->only('create');
+        $this->middleware('can:admin.detalles-inputs.store')->only('store');
+        $this->middleware('can:admin.detalles-inputs.destroy')->only('destroy');
+
+    }
+
     public function index()
     {
         //

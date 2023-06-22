@@ -3,6 +3,12 @@
 @section('title', 'Arriendos')
 
 @section('content_header')
+    @can('loans.checkReturn')
+        <a href="{{ route('loans.checkReturn') }}" class="btn btn-primary mb-2 float-right">Comprobar Estado</a>
+    @endcan
+    @can('admin.loans.create')
+        <a href="{{ route('admin.loans.create') }}" class="btn btn-primary mb-2 float-right mr-2">Nuevo</a>
+    @endcan
     <h1>Arriendos</h1>
 @stop
 

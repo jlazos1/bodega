@@ -10,6 +10,13 @@ use Illuminate\Http\Request;
 
 class AssetController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:admin.assets.index')->only('index');
+        $this->middleware('can:admin.assets.create')->only('create', 'store');
+        $this->middleware('can:admin.assets.edit')->only('edit', 'update');
+    }
+
     /**
      * Display a listing of the resource.
      */

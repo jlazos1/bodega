@@ -9,9 +9,13 @@ use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('can:admin.customers.index')->only('index');
+        $this->middleware('can:admin.customers.create')->only('create', 'store');
+        $this->middleware('can:admin.customers.edit')->only('edit', 'update');
+    }
+
     public function index()
     {
         return view('admin.customers.index');

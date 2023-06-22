@@ -7,7 +7,6 @@
 @endif
 
 <div>
-    <a href="{{ route('admin.asset_types.create') }}" class="btn btn-primary mb-2">Nuevo</a>
     <div class="card">
         <div class="card-header">
             <input wire:model="search" type="text" class="form-control" placeholder="Filtrar">
@@ -30,12 +29,10 @@
                                 <td>{{ $at->id }}</td>
                                 <td>{{ $at->name }}</td>
                                 <td width="10px">
-                                    <a href="{{ route('admin.asset_types.edit', $at->id) }}" class="btn btn-primary fa fa-pen-to-square"></a>
-                                    <form action="{{ route('admin.asset_types.destroy', $at->id) }}" method="POST">
-                                        @method('DELETE')
-                                        @csrf
-                                        <button class="btn btn-danger fa fa-trash"></button>
-                                    </form>
+                                    @can('admin.asset_types.edit')
+                                        <a href="{{ route('admin.asset_types.edit', $at->id) }}"
+                                            class="btn btn-primary fa fa-pen-to-square"></a>
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach

@@ -15,9 +15,15 @@ use Illuminate\Support\Facades\DB;
 
 class InputController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('can:admin.inputs.index')->only('index');
+        $this->middleware('can:admin.inputs.create')->only('create', 'store');
+        $this->middleware('can:admin.inputs.edit')->only('edit', 'update');
+        $this->middleware('can:admin.inputs.show')->only('show');
+
+    }
+
     public function index()
     {
         return view('admin.inputs.index');

@@ -11,9 +11,13 @@ use Illuminate\Support\Facades\DB;
 
 class MachinesRelocationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('can:admin.machines-relocations.index')->only('index');
+        $this->middleware('can:admin.machines-relocations.create')->only('create', 'store');
+        $this->middleware('can:admin.machines-relocations.show')->only('show');
+
+    }
     public function index()
     {
         return view('admin.relocations-machines.index');

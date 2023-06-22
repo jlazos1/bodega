@@ -11,9 +11,14 @@ use Illuminate\Support\Facades\DB;
 
 class DetailsOutputController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('can:admin.detalles-outputs.create')->only('create');
+        $this->middleware('can:admin.detalles-outputs.store')->only('store');
+        $this->middleware('can:admin.detalles-outputs.destroy')->only('destroy');
+
+    }
+
     public function index()
     {
         //

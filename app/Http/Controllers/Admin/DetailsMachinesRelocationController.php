@@ -12,9 +12,14 @@ class DetailsMachinesRelocationController extends Controller
 {
     public $select = [];
 
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('can:admin.machines-details-relocations.create')->only('create');
+        $this->middleware('can:admin.machines-details-relocations.store')->only('store');
+        $this->middleware('can:admin.machines-details-relocations.destroy')->only('destroy');
+
+    }
+
     public function index()
     {
         //

@@ -3,6 +3,9 @@
 @section('title', 'Movimiento Interno')
 
 @section('content_header')
+    @can('admin.outputs.create')
+        <a href="{{ route('admin.outputs.create') }}" class="btn btn-primary mb-2 float-right">Nuevo</a>
+    @endcan
     <h1>Movimiento Interno</h1>
 @stop
 

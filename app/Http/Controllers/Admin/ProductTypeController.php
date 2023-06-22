@@ -3,14 +3,19 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use App\Models\ProductType;
 use Illuminate\Http\Request;
 
 class ProductTypeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('can:admin.product_types.index')->only('index');
+        $this->middleware('can:admin.product_types.create')->only('create', 'store');
+        $this->middleware('can:admin.product_types.edit')->only('edit', 'update');
+
+    }
     public function index()
     {
         return view('admin.product_types.index');
@@ -79,9 +84,6 @@ class ProductTypeController extends Controller
      */
     public function destroy(string $id)
     {
-        $product_type = ProductType::find($id);
-        $product_type->delete();
 
-        return redirect()->route('admin.product_types.index')->with('info', 'Se eliminó la categoría de producto');
     }
 }

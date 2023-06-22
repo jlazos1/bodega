@@ -10,9 +10,14 @@ use Illuminate\Http\Request;
 
 class DetailsLoansController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('can:admin.detalles-loans.create')->only('create');
+        $this->middleware('can:admin.detalles-loans.store')->only('store');
+        $this->middleware('can:admin.detalles-loans.destroy')->only('destroy');
+
+    }
+
     public function index()
     {
         //

@@ -11,6 +11,8 @@ class Maintenance extends Model
 
     protected $fillable = [
         'date',
-        'details'
+        'details',
+        'machine_id',
+        'user_id'
     ];
 }

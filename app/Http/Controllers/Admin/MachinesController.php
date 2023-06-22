@@ -10,9 +10,14 @@ use Illuminate\Http\Request;
 
 class MachinesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('can:admin.machines.index')->only('index');
+        $this->middleware('can:admin.machines.create')->only('create', 'store');
+        $this->middleware('can:admin.machines.edit')->only('edit', 'update');
+
+    }
+
     public function index()
     {
         return view('admin.machines.index');

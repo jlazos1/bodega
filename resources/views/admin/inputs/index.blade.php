@@ -3,6 +3,9 @@
 @section('title', 'Entradas')
 
 @section('content_header')
+    @can('admin.inputs.create')
+        <a href="{{ route('admin.inputs.create') }}" class="btn btn-primary mb-2 float-right">Nuevo</a>
+    @endcan
     <h1>Entradas</h1>
 @stop
 

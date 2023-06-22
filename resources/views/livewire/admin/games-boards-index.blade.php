@@ -6,7 +6,6 @@
     </div>
 @endif
 <div>
-    <a href="{{ route('admin.game-boards.create') }}" class="btn btn-primary mb-2">Nuevo</a>
     <div class="card">
         <div class="card-header">
             <input wire:model="search" type="text" class="form-control" placeholder="Filtrar">
@@ -29,8 +28,10 @@
                                 <td>{{ $game->id }}</td>
                                 <td>{{ $game->name }}</td>
                                 <td width="10px">
-                                    <a href="{{ route('admin.game-boards.edit', $game->id) }}"
-                                        class="btn btn-primary fa fa-pen-to-square"></a>
+                                    @can('admin.game-boards.edit')
+                                        <a href="{{ route('admin.game-boards.edit', $game->id) }}"
+                                            class="btn btn-primary fa fa-pen-to-square"></a>
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach

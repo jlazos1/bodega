@@ -64,7 +64,7 @@ return [
     */
 
     'logo' => '<b>Grupo</b>Nueva Vida',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo_img' => 'img/logognv2.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -84,9 +84,9 @@ return [
     */
 
     'auth_logo' => [
-        'enabled' => false,
+        'enabled' => true,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            'path' => 'img/logognv2.png',
             'alt' => 'Auth Logo',
             'class' => '',
             'width' => 50,
@@ -109,11 +109,11 @@ return [
     'preloader' => [
         'enabled' => true,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            'path' => 'img/logognv2.png',
             'alt' => 'AdminLTE Preloader Image',
             'effect' => 'animation__shake',
-            'width' => 60,
-            'height' => 60,
+            'width' => 600,
+            'height' => 600,
         ],
     ],
 
@@ -318,6 +318,7 @@ return [
             'text' => 'profile',
             'url'  => 'profile/show',
             'icon' => 'fas fa-fw fa-user',
+            'target' => '_blank'
         ],
         /*[
             'text' => 'change_password',
@@ -367,89 +368,115 @@ return [
             'text'       => 'users',
             'icon'       => 'fa fa-users fa-fw',
             'route'      => 'admin.users.index',
+            'can'        => 'admin.users.index',
         ],
         [
             'text'       => 'branches',
             'icon'       => 'fa fa-building fa-fw',
             'route'      => 'admin.branches.index',
+            'can'        => 'admin.branches.index',
         ],
         [
             'text'       => 'customers',
             'icon'       => 'fa fa-user fa-fw',
             'route'      => 'admin.customers.index',
+            'can'        => 'admin.customers.index',
         ],
         [
             'text'       => 'providers',
             'icon'       => 'fa fa-truck fa-fw',
             'route'      => 'admin.providers.index',
+            'can'        => 'admin.providers.index',
+            
         ],
-        ['header' => 'Máquinas'],
+        ['header' => 'MÁQUINAS'],
         [
             'text'       => 'games_boards',
             'icon_color' => 'green',
             'route'      => 'admin.game-boards.index',
+            'can'        => 'admin.game-boards.index',          
         ],
         [
             'text'       => 'machines',
             'icon_color' => 'green',
             'route'      => 'admin.machines.index',
+            'can'        => 'admin.machines.index',
         ],
         [
             'text'       => 'machines_relocations',
             'icon_color' => 'green',
             'route'      => 'admin.machines-relocations.index',
+            'can'        => 'admin.machines-relocations.index',
+
         ],
         [
             'text'       => 'loans',
             'icon_color' => 'green',
             'route'      => 'admin.loans.index',
+            'can'        => 'admin.loans.index',
+        ],
+        [
+            'text'       => 'maintenances',
+            'icon_color' => 'green',
+            'route'      => 'admin.maintenances.index',
+            'can'        => 'admin.maintenances.index',
         ],
         ['header' => 'ACTIVOS'],
         [
             'text'       => 'assets',
             'icon_color' => 'cyan',
             'route'      => 'admin.assets.index',
+            'can'        => 'admin.assets.index',
+
         ],
         [
             'text'       => 'asset_types',
             'icon_color' => 'cyan',
             'route'      => 'admin.asset_types.index',
+            'can'        => 'admin.asset_types.index',
         ],
         [
             'text'       => 'asset_models',
             'icon_color' => 'cyan',
             'route'      => 'admin.asset_models.index',
+            'can'        => 'admin.asset_models.index',
         ],
         [
             'text'       => 'relocations',
             'icon_color' => 'cyan',
             'route'      => 'admin.relocations.index',
+            'can'        => 'admin.relocations.index',
         ],
         ['header' => 'PRODUCTOS'],
         [
             'text'       => 'products',
             'icon_color' => 'red',
             'route'      => 'admin.products.index',
+            'can'        => 'admin.products.index',            
         ],
         [
             'text'       => 'product_types',
             'icon_color' => 'red',
             'route'      => 'admin.product_types.index',
+            'can'        => 'admin.product_types.index',
         ],
         [
             'text'       => 'inputs',
             'icon_color' => 'red',
             'route'      => 'admin.inputs.index',
-        ],
+            'can'        => 'admin.inputs.index',
+        ], 
         [
             'text'       => 'outputs',
             'icon_color' => 'red',
             'route'      => 'admin.outputs.index',
+            'can'        => 'admin.outputs.index',
         ],
         [
             'text'       => 'product_branches',
             'icon_color' => 'red',
-            'route'        => 'products_branch',
+            'route'      => 'products_branch',
+            'can'        => 'products_branch',
         ],
 
 

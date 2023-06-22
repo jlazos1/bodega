@@ -12,9 +12,13 @@ class DetailsRelocationController extends Controller
 {
     public $select = [];
 
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('can:admin.detalles-relocations.create')->only('create');
+        $this->middleware('can:admin.detalles-relocations.store')->only('store');
+        $this->middleware('can:admin.detalles-relocations.destroy')->only('destroy');
+
+    }
     public function index()
     {
     }

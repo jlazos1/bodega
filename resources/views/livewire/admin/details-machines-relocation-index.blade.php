@@ -22,7 +22,7 @@
 
         {!! Form::label('machines', 'Máquinas', ['class' => 'h5 display: block mt-4 mb-4']) !!}
 
-        {!! Form::label('machine_id', 'Nombre Activo', ['class' => 'h5']) !!}
+        {!! Form::label('machine_id', 'Nombre Máquina', ['class' => 'h5']) !!}
         {!! Form::select('machine_id', $machines, null, [
             'class' => 'form-control mb-2 select-asset',
             'multiple' => 'multiple',

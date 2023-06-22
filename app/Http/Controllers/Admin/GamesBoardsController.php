@@ -8,9 +8,12 @@ use Illuminate\Http\Request;
 
 class GamesBoardsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('can:admin.game-boards.index')->only('index');
+        $this->middleware('can:admin.game-boards.create')->only('create', 'store');
+        $this->middleware('can:admin.game-boards.edit')->only('edit', 'update');
+    }
     public function index()
     {
         return view('admin.games_boards.index');

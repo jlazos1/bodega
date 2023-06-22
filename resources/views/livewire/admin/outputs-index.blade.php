@@ -7,7 +7,6 @@
 @endif
 
 <div>
-    <a href="{{ route('admin.outputs.create') }}" class="btn btn-primary mb-2">Nuevo</a>
     <div class="card">
         <div class="card-header">
             <input wire:model="search" type="text" class="form-control mb-2" placeholder="Filtrar">
@@ -15,7 +14,7 @@
             <input wire:model="to_date" type="date" class="form-control" placeholder="Filtrar">
         </div>
 
-        
+
         @if ($outputs->count())
             <div class="card-body">
                 <table class="table table-striped">
@@ -32,11 +31,14 @@
                         @foreach ($outputs as $output)
                             <tr>
                                 <td>{{ $output->id }}</td>
-                                <td>{{ \Carbon\Carbon::parse($output->date)->format('d-m-Y')}}</td>
+                                <td>{{ \Carbon\Carbon::parse($output->date)->format('d-m-Y') }}</td>
                                 <td>{{ $output->origin_branch_name }}</td>
-                                <td>{{ $output->destination_branch_name}}</td>
+                                <td>{{ $output->destination_branch_name }}</td>
                                 <td width="10px">
-                                    <a href="{{ route('admin.outputs.edit', [$output->id]) }}" class="btn btn-primary fa fa-pen-to-square"></a>
+                                    @can('admin.outputs.edit')
+                                        <a href="{{ route('admin.outputs.edit', [$output->id]) }}"
+                                            class="btn btn-primary fa fa-pen-to-square"></a>
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach

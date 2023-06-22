@@ -3,6 +3,9 @@
 @section('title', 'Categorías de Productos')
 
 @section('content_header')
+    @can('admin.product_types.create')
+        <a href="{{ route('admin.product_types.create') }}" class="btn btn-primary mb-2 float-right">Nuevo</a>
+    @endcan
     <h1>Categorías de Productos</h1>
 @stop
 
