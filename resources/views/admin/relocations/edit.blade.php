@@ -23,7 +23,7 @@
 
             {!! Form::label('destination_branch_id', 'Sucursal Destino', ['class' => 'h5']) !!}
             {!! Form::select('destination_branch_id', $branches, $relocation->destination, [
-                'class' => 'form-control mb-2 select-city',
+                'class' => 'form-control mb-2 select-branch',
                 'placeholder' => 'Seleccione una Sucursal',
             ]) !!}
             @error('destination_branch_id')
@@ -51,7 +51,8 @@
     @livewireScripts
     <script>
         $(document).ready(function() {
-            $('.branch_select').select2();
+            let select2 = $('.select-branch').select2();
+            select2.data('select2').$selection.css('height', '38px');
         });
     </script>
 @stop

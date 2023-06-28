@@ -24,7 +24,7 @@ class DetailsOutputsIndex extends Component
     public function render()
     {
         $output = $this->output;
-        $products = Product::select(DB::raw("CONCAT(id, ' - ', name) AS name_id, id"))->get();
+        $products = Product::select(DB::raw("CONCAT(id, ' - ', name) AS name_id, id"))->pluck('name_id', 'id');
         $productsAdd = DB::table('details_outputs')
             ->join('products', 'products.id', '=', 'details_outputs.product_id')
             ->select('details_outputs.*', 'products.name AS product_name')

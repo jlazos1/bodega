@@ -23,12 +23,10 @@
         {!! Form::label('productos', 'Productos', ['class' => 'h5 display: block mt-4 mb-4']) !!}
 
         {!! Form::label('product_id', 'Nombre Producto', ['class' => 'h5']) !!}
-        <select name="product_id" id="product_id" class="form-control">
-            <option value="0">Seleccione un Producto</option>
-            @foreach ($products as $p)
-                <option value="{{ $p->id }}">{{ $p->name_id }}</option>
-            @endforeach
-        </select>
+        {!! Form::select('product_id', $products, null, [
+            'class' => 'form-control mb-2 select-product',
+        ]) !!}
+
 
         {!! Form::label('quantity', 'Cantidad', ['class' => 'h5']) !!}
         {!! Form::number('quantity', null, ['class' => 'form-control mb-2']) !!}
@@ -39,7 +37,7 @@
 
         {!! Form::close() !!}
 
-        
+
 
         <div>
             <table class="table table-striped mt-5">
@@ -81,5 +79,10 @@
 
 @section('js')
     @livewireScripts
-
+    <script>
+        $(document).ready(function() {
+            let select2 = $('.select-product').select2();
+            select2.data('select2').$selection.css('height', '38px');
+        });
+    </script>
 @stop

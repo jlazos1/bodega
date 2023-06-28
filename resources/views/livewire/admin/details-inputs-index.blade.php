@@ -91,7 +91,8 @@
     @livewireScripts
     <script>
         $(document).ready(function() {
-            $('.select-product').select2();
+            let select2 = $('.select-product').select2();
+            select2.data('select2').$selection.css('height', '38px');
         });
     </script>
 

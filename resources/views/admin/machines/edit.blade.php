@@ -36,7 +36,7 @@
 
             {!! Form::label('branch_id', 'Sucursal', ['class' => 'h5']) !!}
             {!! Form::select('branch_id', $branches, $machine->branch_id, [
-                'class' => 'form-control mb-2 branch-select',
+                'class' => 'form-control mb-2 select-branch',
                 'placeholder' => 'Seleccione una Sucursal',
             ]) !!}
             @error('branch_id')
@@ -59,12 +59,12 @@
     @livewireScripts
     <script>
         $(document).ready(function() {
-            $('.games_boards_select').select2();
+            let select2 = $('.games_boards_select').select2();
+            select2.data('select2').$selection.css('height', '38px');
         });
-    </script>
-    <script>
         $(document).ready(function() {
-            $('.branch-select').select2();
+            let select2 = $('.select-branch').select2();
+            select2.data('select2').$selection.css('height', '38px');
         });
     </script>
 @stop

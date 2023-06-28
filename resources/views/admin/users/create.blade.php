@@ -50,7 +50,7 @@
             @enderror
 
 
-            <h2 class="h5 mt-3">Listado de roles</h2>
+            <h2 class="h5 mt-4">Listado de roles</h2>
 
             @foreach ($roles as $role)
                 <div>
@@ -70,7 +70,7 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+    <link rel="stylesheet" href="/css/styles.css">
 @stop
 
 @section('js')
@@ -78,7 +78,8 @@
 
     <script>
         $(document).ready(function() {
-            $('.select-branch').select2();
+            let select2 = $('.select-branch').select2();
+            select2.data('select2').$selection.css('height', '40px');
         });
     </script>
 

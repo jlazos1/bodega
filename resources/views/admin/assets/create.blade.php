@@ -27,7 +27,7 @@
 
             {!! Form::label('asset_model_id', 'Modelo', ['class' => 'h5']) !!}
             {!! Form::select('asset_model_id', $asset_models, null, [
-                'class' => 'form-control mb-2',
+                'class' => 'form-control mb-2 select-model',
                 'placeholder' => 'Seleccione un Modelo',
             ]) !!}
             @error('asset_model_id')
@@ -36,7 +36,7 @@
 
             {!! Form::label('branch_id', 'Sucursal', ['class' => 'h5']) !!}
             {!! Form::select('branch_id', $branches, null, [
-                'class' => 'form-control mb-2',
+                'class' => 'form-control mb-2 select-branch',
                 'placeholder' => 'Seleccione una Sucursal',
             ]) !!}
             @error('branch_id')
@@ -57,5 +57,16 @@
 
 @section('js')
     @livewireScripts
+    <script>
+        $(document).ready(function() {
+            let select2 = $('.select-branch').select2();
+            select2.data('select2').$selection.css('height', '38px');
+        });
+
+        $(document).ready(function() {
+            let select2 = $('.select-model').select2();
+            select2.data('select2').$selection.css('height', '38px');
+        });
+    </script>
 
 @stop

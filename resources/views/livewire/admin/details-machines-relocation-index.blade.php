@@ -24,7 +24,7 @@
 
         {!! Form::label('machine_id', 'Nombre Máquina', ['class' => 'h5']) !!}
         {!! Form::select('machine_id', $machines, null, [
-            'class' => 'form-control mb-2 select-asset',
+            'class' => 'form-control mb-2 select-machine',
             'multiple' => 'multiple',
             'name' => 'seleccion[]',
         ]) !!}
@@ -82,7 +82,8 @@
     @livewireScripts
     <script>
         $(document).ready(function() {
-            $('.select-asset').select2();
+            let select2 = $('.select-machine').select2();
+            select2.data('select2').$selection.css('height', '38px');
         });
     </script>
 @stop

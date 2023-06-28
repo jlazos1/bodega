@@ -16,6 +16,7 @@
             {!! Form::label('machine_id', 'Nombre Máquina', ['class' => 'h5']) !!}
             {!! Form::select('machine_id', $machines, null, [
                 'class' => 'form-control mb-2 select-machine',
+                'placeholder'   => 'Seleccione una máquina'
             ]) !!}
             @error('machine_id')
                 <small style="color: red">{{ $message }}</small><br>
@@ -47,5 +48,11 @@
 
 @section('js')
     @livewireScripts
+    <script>
+        $(document).ready(function() {
+            let select2 = $('.select-machine').select2();
+            select2.data('select2').$selection.css('height', '38px');
+        });
+    </script>
 
 @stop

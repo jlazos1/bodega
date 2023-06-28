@@ -16,14 +16,14 @@
             {!! Form::label('origin_branch_id', 'Sucursal Origen', ['class' => 'h5']) !!}
             {!! Form::label('origin_branch_id', $origin_branch_name, ['class' => 'form-control mb-2']) !!}
             {!! Form::hidden('origin_branch_id', $output->origin_branch_id, []) !!}
-            
+
             @error('origin_branch_id')
                 <small style="color: red">{{ $message }}</small><br>
             @enderror
 
             {!! Form::label('destination_branch_id', 'Sucursal Destino', ['class' => 'h5']) !!}
             {!! Form::select('destination_branch_id', $branches, $output->destination_branch_id, [
-                'class' => 'form-control mb-2 select-city',
+                'class' => 'form-control mb-2 select-branch',
                 'placeholder' => 'Seleccione una Sucursal',
             ]) !!}
             @error('destination_branch_id')
@@ -49,5 +49,11 @@
 
 @section('js')
     @livewireScripts
+    <script>
+        $(document).ready(function() {
+            let select2 = $('.select-branch').select2();
+            select2.data('select2').$selection.css('height', '38px');
+        });
+    </script>
 
 @stop

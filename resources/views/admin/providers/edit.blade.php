@@ -69,4 +69,10 @@
 
 @section('js')
     @livewireScripts
+    <script>
+        $(document).ready(function() {
+            let select2 = $('.select-city').select2();
+            select2.data('select2').$selection.css('height', '38px');
+        });
+    </script>
 @stop

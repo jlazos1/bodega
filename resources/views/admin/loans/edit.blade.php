@@ -22,13 +22,7 @@
                 <small style="color: red">{{ $message }}</small><br>
             @enderror
 
-            {!! Form::label('amount', 'Monto', ['class' => 'h5']) !!}
-            {!! Form::number('amount', $loan->amount, ['class' => 'form-control mb-2']) !!}
-            @error('amount')
-                <small style="color: red">{{ $message }}</small><br>
-            @enderror
-
-            <div>
+            <div class="mt-3">
                 <div class="float-left mb-20" style='width: 49%'>
 
                     {!! Form::label('loan_date', 'Fecha Inicial', ['class' => 'h5']) !!}

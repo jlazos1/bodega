@@ -77,7 +77,8 @@
     @livewireScripts
     <script>
         $(document).ready(function() {
-            $('.select-asset').select2();
+            let select2 = $('.select-asset').select2();
+            select2.data('select2').$selection.css('height', '38px');
         });
     </script>
 @stop

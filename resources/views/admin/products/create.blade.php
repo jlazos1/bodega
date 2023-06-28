@@ -21,7 +21,7 @@
 
             {!! Form::label('product_type_id', 'Categoría', ['class' => 'h5']) !!}
             {!! Form::select('product_type_id', $product_types, null, [
-                'class' => 'form-control mb-2',
+                'class' => 'form-control mb-2 select-category',
                 'placeholder' => 'Seleccione una Categoría de Producto',
             ]) !!}
             @error('product_type_id')
@@ -42,5 +42,11 @@
 
 @section('js')
     @livewireScripts
+    <script>
+        $(document).ready(function() {
+            let select2 = $('.select-category').select2();
+            select2.data('select2').$selection.css('height', '38px');
+        });
+    </script>
 
 @stop

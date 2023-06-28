@@ -13,10 +13,9 @@ class MaintenancesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:admin.relocations-machines.index')->only('index');
-        $this->middleware('can:admin.relocations-machines.create')->only('create', 'store');
-        $this->middleware('can:admin.relocations-machines.show')->only('show');
-
+        $this->middleware('can:admin.maintenances.index')->only('index');
+        $this->middleware('can:admin.maintenances.create')->only('create', 'store');
+        $this->middleware('can:admin.maintenances.show')->only('show');
     }
     
     public function index()

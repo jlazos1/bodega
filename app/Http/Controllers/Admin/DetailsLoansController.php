@@ -12,8 +12,7 @@ class DetailsLoansController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:admin.detalles-loans.create')->only('create');
-        $this->middleware('can:admin.detalles-loans.store')->only('store');
+        $this->middleware('can:admin.detalles-loans.create')->only('create', 'store');
         $this->middleware('can:admin.detalles-loans.destroy')->only('destroy');
 
     }

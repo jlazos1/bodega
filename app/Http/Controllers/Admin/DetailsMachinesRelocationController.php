@@ -14,8 +14,7 @@ class DetailsMachinesRelocationController extends Controller
 
     public function __construct()
     {
-        $this->middleware('can:admin.machines-details-relocations.create')->only('create');
-        $this->middleware('can:admin.machines-details-relocations.store')->only('store');
+        $this->middleware('can:admin.machines-details-relocations.create')->only('create', 'store');
         $this->middleware('can:admin.machines-details-relocations.destroy')->only('destroy');
 
     }

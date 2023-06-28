@@ -71,7 +71,8 @@
     @livewireScripts
     <script>
         $(document).ready(function() {
-            $('.select-city').select2();
+            let select2 = $('.select-city').select2();
+            select2.data('select2').$selection.css('height', '38px');
         });
     </script>
 

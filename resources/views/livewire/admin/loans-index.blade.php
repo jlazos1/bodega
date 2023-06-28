@@ -7,7 +7,7 @@
 @endif
 
 <div>
-    
+
     <div class="card">
         <div class="card-header">
             <input wire:model="search" type="text" class="form-control mb-2" placeholder="Filtrar">
@@ -39,13 +39,17 @@
                                 <td>{{ $loan->loan_state_name }}</td>
                                 <td style="display: flex;" class="float-right">
                                     @if ($loan->loan_state_id != 3)
+                                        @can('admin.loans.show')
+                                            <a href="{{ route('admin.loans.show', [$loan->id]) }}"
+                                                class="btn btn-primary fa fa-eye mr-2"></a>
+                                        @endcan
                                         @can('loans.finishLoan')
                                             <a href="{{ route('loans.finishLoan', [$loan->id]) }}"
                                                 class="fa-solid fa-check-double btn btn-danger mr-2"></a>
                                         @endcan
                                         @can('admin.loans.edit')
                                             <a href="{{ route('admin.loans.edit', [$loan->id]) }}"
-                                                class="btn btn-primary fa fa-pen-to-square"></a>
+                                                class="btn btn-primary fa fa-pen-to-square mr-2"></a>
                                         @endcan
                                     @endif
                                 </td>

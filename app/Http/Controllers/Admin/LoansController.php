@@ -18,7 +18,6 @@ class LoansController extends Controller
         $this->middleware('can:admin.loans.create')->only('create', 'store');
         $this->middleware('can:admin.loans.edit')->only('edit', 'update');
         $this->middleware('can:admin.loans.show')->only('show');
-
     }
 
     public function index()
@@ -45,19 +44,16 @@ class LoansController extends Controller
             'customer_id'       => 'required',
             'loan_date'         => 'required',
             'return_date'       => 'required|after:loan_date',
-            'amount'            => 'required'
         ], [
             'customer_id.required'      => 'El campo Cliente es obligatorio',
             'loan_date.required'        => 'El campo Fecha Inicial es obligatorio',
             'return_date.required'      => 'El campo Fecha Final es obligatorio',
             'return_date.after'         => 'La fecha de devolución debe ser posterior a la fecha inicial',
-            'amount.required'           => 'El campo Monto es obligatorio',
         ]);
         $loan = new Loan([
             'customer_id'       => $request->get('customer_id'),
             'loan_date'         => $request->get('loan_date'),
             'return_date'       => $request->get('return_date'),
-            'amount'            => $request->get('amount'),
             'loan_state_id'     => 1,
         ]);
         $loan->save();
@@ -70,7 +66,14 @@ class LoansController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $loan = Loan::find($id);
+        $machinesAdd = MachineLoan::join('machines', 'machines.id', '=', 'machine_loans.machine_id')
+            ->where('loan_id', '=', $loan->id)
+            ->select('machine_loans.*', 'machines.name AS machine_name')
+            ->paginate();
+        $customer_name = Customer::find($loan->customer_id)->name;
+
+        return view('admin.loans.show', compact('loan', 'machinesAdd', 'customer_name'));
     }
 
     /**
@@ -92,23 +95,19 @@ class LoansController extends Controller
         $request->validate([
             'loan_date'         => 'required',
             'return_date'       => 'required|after:loan_date',
-            'amount'            => 'required'
         ], [
             'loan_date.required'        => 'El campo Fecha Inicial es obligatorio',
             'return_date.required'      => 'El campo Fecha Final es obligatorio',
             'return_date.after'         => 'La fecha de devolución debe ser posterior a la fecha inicial',
-            'amount.required'           => 'El campo Monto es obligatorio',
         ]);
 
         $loan->update([
             'loan_date'         => $request->get('loan_date'),
             'return_date'       => $request->get('return_date'),
-            'amount'            => $request->get('amount'),
         ]);
 
         $loan_id = $loan->id;
         return redirect()->route('details_loans', ['loan_id' => $loan_id]);
-
     }
 
     /**
@@ -119,21 +118,23 @@ class LoansController extends Controller
         //
     }
 
-    public function checkReturn(){
+    public function checkReturn()
+    {
         $loans = Loan::where('loan_state_id', 1)->get();
 
         foreach ($loans as $loan) {
             if ($loan->return_date < Carbon::now()) {
                 $loan->update([
                     'loan_state_id' => 2,
-                ]);          
+                ]);
             }
         }
 
         return redirect()->route('admin.loans.index');
     }
 
-    public function finishLoan(string $loan_id){
+    public function finishLoan(string $loan_id)
+    {
         $loan = Loan::find($loan_id);
         $loan->update([
             'loan_state_id' => 3,

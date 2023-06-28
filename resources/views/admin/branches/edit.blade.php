@@ -41,7 +41,7 @@
 
             {!! Form::label('city_id', 'Ciudad', ['class' => 'h5']) !!}
             {!! Form::select('city_id', $cities, $branch->city_id, [
-                'class' => 'form-control mb-2',
+                'class' => 'form-control mb-2 select-city',
                 'placeholder' => 'Seleccione una ciudad',
             ]) !!}
             @error('city_id')
@@ -62,4 +62,10 @@
 
 @section('js')
     @livewireScripts
+    <script>
+        $(document).ready(function() {
+            let select2 = $('.select-city').select2();
+            select2.data('select2').$selection.css('height', '38px');
+        });
+    </script>
 @stop

@@ -34,7 +34,7 @@
 
             {!! Form::label('branch', 'Sucursal', ['class' => 'h5']) !!}
             {!! Form::select('branch_id', $branches, null, [
-                'class' => 'select-branch form-control',
+                'class' => 'select-branch form-control mb-2',
                 'placeholder' => 'Seleccione una Sucursal',
             ]) !!}
             @error('branch_id')
@@ -42,7 +42,7 @@
             @enderror
 
 
-            <h2 class="h5">Listado de roles</h2>
+            <h2 class="h5 mt-4">Listado de roles</h2>
 
             @foreach ($roles as $role)
                 <div>
@@ -62,15 +62,16 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+    <link rel="stylesheet" href="/css/styles.css">
 @stop
 
 @section('js')
     @livewireScripts
 
     <script>
-        $(document).ready(function() {
-            $('.select-branch').select2();
+       $(document).ready(function() {
+            let select2 = $('.select-branch').select2();
+            select2.data('select2').$selection.css('height', '35px');
         });
     </script>
 @stop

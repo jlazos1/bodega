@@ -15,7 +15,7 @@
 
             {!! Form::label('origin_branch_id', 'Sucursal Origen', ['class' => 'h5']) !!}
             {!! Form::select('origin_branch_id', $branches, null, [
-                'class' => 'form-control mb-2 branch_select',
+                'class' => 'form-control mb-2 select-branch',
                 'placeholder' => 'Seleccione una Sucursal',
                 'id'    => 'select-prueba'
             ]) !!}
@@ -25,7 +25,7 @@
 
             {!! Form::label('destination_branch_id', 'Sucursal Destino', ['class' => 'h5']) !!}
             {!! Form::select('destination_branch_id', $branches, null, [
-                'class' => 'form-control mb-2 branch_select',
+                'class' => 'form-control mb-2 select-branch',
                 'placeholder' => 'Seleccione una Sucursal',
             ]) !!}
             @error('destination_branch_id')
@@ -47,21 +47,14 @@
 
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
-    <style>
-        #select-prueba {
-            width: 100%;
-            /* Ajusta el ancho según sea necesario */
-            height: 40px;
-            /* Ajusta la altura según sea necesario */
-        }
-    </style>
 @stop
 
 @section('js')
     @livewireScripts
     <script>
         $(document).ready(function() {
-            $('.branch_select').select2();
+            let select2 = $('.select-branch').select2();
+            select2.data('select2').$selection.css('height', '38px');
         });
     </script>
 @stop

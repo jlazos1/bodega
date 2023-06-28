@@ -13,6 +13,7 @@ class DetailsMachinesRelocationIndex extends Component
     {
         $relocation = MachineRelocation::find($_REQUEST['id']);
         $machines = Machine::where('branch_id', $relocation->origin)
+            ->where('state', '=', 0)
             ->select(DB::raw("CONCAT(id, ' - ', name) AS name_id, id"))
             ->pluck('name_id', 'id');
 

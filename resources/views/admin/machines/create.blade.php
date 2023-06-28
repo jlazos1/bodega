@@ -29,7 +29,6 @@
             {!! Form::select('games_board_id', $games_boards, null, [
                 'class' => 'form-control mb-2 games_boards_select',
                 'placeholder' => 'Seleccione una Tarjeta de Juego',
-                
             ]) !!}
             @error('games_boards_id')
                 <small style="color: red">{{ $message }}</small><br>
@@ -37,7 +36,7 @@
 
             {!! Form::label('branch_id', 'Sucursal', ['class' => 'h5']) !!}
             {!! Form::select('branch_id', $branches, null, [
-                'class' => 'form-control mb-2 branch-select',
+                'class' => 'form-control mb-2 select-branch',
                 'placeholder' => 'Seleccione una Sucursal',
             ]) !!}
             @error('branch_id')
@@ -60,11 +59,12 @@
     @livewireScripts
     <script>
         $(document).ready(function() {
-            $('.games_boards_select').select2();
+            let select2 = $('.games_boards_select').select2();
+            select2.data('select2').$selection.css('height', '38px');
         });
-    
         $(document).ready(function() {
-            $('.branch-select').select2();
+            let select2 = $('.select-branch').select2();
+            select2.data('select2').$selection.css('height', '38px');
         });
     </script>
 

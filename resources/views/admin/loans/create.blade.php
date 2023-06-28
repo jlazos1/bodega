@@ -22,13 +22,7 @@
                 <small style="color: red">{{ $message }}</small><br>
             @enderror
 
-            {!! Form::label('amount', 'Monto', ['class' => 'h5']) !!}
-            {!! Form::number('amount', null, ['class' => 'form-control mb-2']) !!}
-            @error('amount')
-                <small style="color: red">{{ $message }}</small><br>
-            @enderror
-
-            <div>
+            <div class="mt-3">
                 <div class="float-left mb-20" style='width: 49%'>
 
                     {!! Form::label('loan_date', 'Fecha Inicial', ['class' => 'h5']) !!}
@@ -62,7 +56,8 @@
     @livewireScripts
     <script>
         $(document).ready(function() {
-            $('.customer-select').select2();
+            let select2 = $('.customer-select').select2();
+            select2.data('select2').$selection.css('height', '38px');
         });
     </script>
 @stop

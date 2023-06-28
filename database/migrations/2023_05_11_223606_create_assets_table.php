@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('assets', function (Blueprint $table) {
-            $table->id();
+            $table->id()->startingValue(210001);
             $table->string('name', 30);
             $table->double('value');
             $table->foreignId('branch_id')->constrained();
