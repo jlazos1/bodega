@@ -34,6 +34,7 @@ use App\Http\Livewire\Admin\StockBranchIndex;
 Route::get('', [HomeController::class, 'index']);
 
 Route::resource('users', UserController::class)->names('admin.users');
+Route::get('resetPassword/{id}', [UserController::class, 'resetPassword'])->name('admin.resetPassword');
 Route::resource('branches', BranchController::class)->names('admin.branches'); 
 Route::resource('providers', ProviderController::class)->names('admin.providers'); 
 Route::resource('customers', CustomerController::class)->names('admin.customers');
@@ -69,4 +70,4 @@ Route::get('details-loans/{loan_id}', DetailsLoansIndex::class)->name('details_l
 Route::get('details-outputs/{output_id}', DetailsOutputsIndex::class)->name('details_outputs');
 Route::get('details-machine-relocation/}', DetailsMachinesRelocationIndex::class)->name('details-machine-relocations');
 
-Route::get('qrcode/{url}', [AssetController::class, 'qrcode'])->name('qrcode');
+Route::get('qrcode/{url}', [MachinesController::class, 'qrcode'])->name('qrcode');

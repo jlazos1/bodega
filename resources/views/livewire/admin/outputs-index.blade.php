@@ -34,10 +34,14 @@
                                 <td>{{ \Carbon\Carbon::parse($output->date)->format('d-m-Y') }}</td>
                                 <td>{{ $output->origin_branch_name }}</td>
                                 <td>{{ $output->destination_branch_name }}</td>
-                                <td width="10px">
+                                <td style="display: flex;" class="float-right">
+                                    @can('admin.outputs.show')
+                                        <a href="{{ route('admin.outputs.show', [$output->id]) }}"
+                                            class="btn btn-primary fa fa-eye mr-2" title="Ver"></a>
+                                    @endcan
                                     @can('admin.outputs.edit')
                                         <a href="{{ route('admin.outputs.edit', [$output->id]) }}"
-                                            class="btn btn-primary fa fa-pen-to-square"></a>
+                                            class="btn btn-primary fa fa-pen-to-square" title="Editar"></a>
                                     @endcan
                                 </td>
                             </tr>

@@ -40,10 +40,14 @@
                                 <td>{{ $input->doc_number }}</td>
                                 <td>{{ \Carbon\Carbon::parse($input->date)->format('d-m-Y') }}</td>
                                 <td>{{ $input->net_amount }}</td>
-                                <td width="10px">
+                                <td style="display: flex;" class="float-right">
+                                    @can('admin.inputs.show')
+                                        <a href="{{ route('admin.inputs.show', [$input->id]) }}"
+                                            class="btn btn-primary fa fa-eye mr-2" title="Ver"></a>
+                                    @endcan
                                     @can('admin.inputs.edit')
                                         <a href="{{ route('admin.inputs.edit', [$input->id]) }}"
-                                            class="btn btn-primary fa fa-pen-to-square"></a>
+                                            class="btn btn-primary fa fa-pen-to-square" title="Editar"></a>
                                     @endcan
                                 </td>
                             </tr>

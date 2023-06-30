@@ -22,14 +22,13 @@
                 <small style="color: red">{{ $message }}</small><br>
             @enderror
 
-            {!! Form::label('date', 'Fecha', ['class' => 'h5']) !!}
+            {!! Form::label('date', 'Fecha', ['class' => 'h5 mt-2']) !!}
             {!! Form::date('date', null, ['class' => 'form-control mb-2']) !!}
             @error('date')
                 <small style="color: red">{{ $message }}</small><br>
             @enderror
 
-
-            {!! Form::label('provider_id', 'Proveedor', ['class' => 'h5']) !!}
+            {!! Form::label('provider_id', 'Proveedor', ['class' => 'h5 mt-2']) !!}
             {!! Form::select('provider_id', $providers, null, [
                 'class' => 'form-control mb-2 select-provider',
                 'placeholder' => 'Seleccione un Proveedor',
@@ -39,7 +38,7 @@
             @enderror
 
 
-            {!! Form::label('document_type_id', 'Tipo de Documento', ['class' => 'h5']) !!}
+            {!! Form::label('document_type_id', 'Tipo de Documento', ['class' => 'h5 mt-2']) !!}
             {!! Form::select('document_type_id', $doc_types, null, [
                 'class' => 'form-control mb-2 select-city',
                 'placeholder' => 'Seleccione un tipo de Documento',
@@ -48,7 +47,7 @@
                 <small style="color: red">{{ $message }}</small><br>
             @enderror
 
-            {!! Form::label('doc_number', 'Número de Documento', ['class' => 'h5']) !!}
+            {!! Form::label('doc_number', 'Número de Documento', ['class' => 'h5 mt-2']) !!}
             {!! Form::number('doc_number', null, ['class' => 'form-control mb-2']) !!}
             @error('doc_number')
                 <small style="color: red">{{ $message }}</small><br>

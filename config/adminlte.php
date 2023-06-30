@@ -389,7 +389,7 @@ return [
             'can'        => 'admin.providers.index',
             
         ],
-        ['header' => 'MÁQUINAS'],
+        ['header' => 'MÁQUINAS', 'can' => 'admin.machines.index'],
         [
             'text'       => 'games_boards',
             'icon_color' => 'green',
@@ -421,7 +421,7 @@ return [
             'route'      => 'admin.maintenances.index',
             'can'        => 'admin.maintenances.index',
         ],
-        ['header' => 'ACTIVOS'],
+        ['header' => 'ACTIVOS', 'can' => 'admin.assets.index'],
         [
             'text'       => 'assets',
             'icon_color' => 'cyan',
@@ -447,7 +447,7 @@ return [
             'route'      => 'admin.relocations.index',
             'can'        => 'admin.relocations.index',
         ],
-        ['header' => 'PRODUCTOS'],
+        ['header' => 'PRODUCTOS', 'can' => 'admin.products.index'],
         [
             'text'       => 'products',
             'icon_color' => 'red',

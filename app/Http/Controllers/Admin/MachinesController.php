@@ -7,6 +7,8 @@ use App\Models\Branch;
 use App\Models\GamesBoard;
 use App\Models\Machine;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class MachinesController extends Controller
 {
@@ -121,6 +123,8 @@ class MachinesController extends Controller
 
     public function qrcode(string $url)
     {
-        return view('qrcode', compact('url'));
+        $qrcode = base64_encode(QrCode::format('svg')->size(200)->errorCorrection('H')->generate($url));
+        $pdf = PDF::loadView('qrcode', compact('url', 'qrcode'));
+        return $pdf->stream();
     }
 }

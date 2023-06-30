@@ -16,8 +16,7 @@ class DetailsInputController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:admin.detalles-inputs.create')->only('create');
-        $this->middleware('can:admin.detalles-inputs.store')->only('store');
+        $this->middleware('can:admin.detalles-inputs.create')->only('create', 'store');
         $this->middleware('can:admin.detalles-inputs.destroy')->only('destroy');
 
     }

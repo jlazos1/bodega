@@ -36,10 +36,11 @@
                                     <td>Sin Asignar</td>
                                 @endif
 
-                                <td width="10px">
+                                <td style="display: flex;" class="float-right">
                                     @can('admin.users.edit')
                                         <a href="{{ route('admin.users.edit', $user->id) }}"
-                                            class="btn btn-primary fa fa-pen-to-square"></a>
+                                            class="btn btn-primary fa fa-pen-to-square mr-2" title="Editar"></a>
+                                            <a href="{{ route('admin.resetPassword', $user->id )}}" class="btn btn-danger fa fa-key" title="Reiniciar contraseña"></a>
                                     @endcan
                                 </td>
                             </tr>

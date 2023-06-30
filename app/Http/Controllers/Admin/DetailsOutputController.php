@@ -13,8 +13,7 @@ class DetailsOutputController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:admin.detalles-outputs.create')->only('create');
-        $this->middleware('can:admin.detalles-outputs.store')->only('store');
+        $this->middleware('can:admin.detalles-outputs.create')->only('create', 'store');
         $this->middleware('can:admin.detalles-outputs.destroy')->only('destroy');
 
     }

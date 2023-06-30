@@ -74,7 +74,26 @@ class InputController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $input = Input::find($id);
+        $branch_name = Branch::find($input->branch_id)->name;
+        $provider_name = 'Sin Información';
+        $type_doc = 'Sin Información';
+
+        if($input->provider_id != null){
+            $provider_name = Provider::find($input->provider_id)->name;
+        }
+
+        if($input->document_type_id != null){
+            $type_doc = DocumentType::find($input->document_type_id)->name;
+        }
+
+        $productsAdd = DetailsInput::where('input_id', '=', $input->id)
+            ->join('products', 'products.id', '=', 'details_inputs.product_id')
+            ->select('details_inputs.*', 'products.name AS product_name')
+            ->get();
+
+        return view('admin.inputs.show', compact('input', 'provider_name', 'type_doc', 'branch_name', 'productsAdd'));
+
     }
 
     /**
@@ -97,16 +116,10 @@ class InputController extends Controller
     {
         $request->validate([
             'date'              => 'required',
-            'provider_id'       => 'required',
-            'document_type_id'  => 'required',
             'branch_id'         => 'required',
-            'doc_number'        => 'required',
         ], [
             'date.required'             => 'El campo Fecha es obligatorio',
-            'provider_id.required'      => 'El campo Proveedor es obligatorio',
-            'document_type_id.required' => 'El campo Tipo de Documento es obligatorio',
             'branch_id.required'        => 'El campo Sucursal es obligatorio',
-            'doc_number.required'       => 'El campo Número de documento es obligatorio',
         ]);
 
         $branch_last = $input->branch_id;

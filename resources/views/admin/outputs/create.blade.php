@@ -24,7 +24,7 @@
 
             {!! Form::label('destination_branch_id', 'Sucursal Destino', ['class' => 'h5']) !!}
             {!! Form::select('destination_branch_id', $branches, null, [
-                'class' => 'form-control mb-2 select-branch',
+                'class' => 'form-control mb-2 select-branch2',
                 'placeholder' => 'Seleccione una Sucursal',
             ]) !!}
             @error('destination_branch_id')
@@ -53,6 +53,10 @@
     <script>
         $(document).ready(function() {
             let select2 = $('.select-branch').select2();
+            select2.data('select2').$selection.css('height', '38px');
+        });
+        $(document).ready(function() {
+            let select2 = $('.select-branch2').select2();
             select2.data('select2').$selection.css('height', '38px');
         });
     </script>

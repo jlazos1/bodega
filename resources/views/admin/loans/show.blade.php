@@ -17,7 +17,7 @@
                 <div class="float-left mb-20" style='width: 49%'>
 
                     {!! Form::label('loan_date', 'Fecha Inicial', ['class' => 'h5']) !!}
-                    {!! Form::label('loan_date', \Carbon\Carbon::parse($loan->loan_date), [
+                    {!! Form::label('loan_date', \Carbon\Carbon::parse($loan->loan_date)->format('d-m-Y'), [
                         'class' => 'form-control mb-2',
                     ]) !!}
 
@@ -25,14 +25,17 @@
                 <div class="float-right" style='width: 49%'>
 
                     {!! Form::label('return_date', 'Fecha Final', ['class' => 'h5']) !!}
-                    {!! Form::label('return_date', \Carbon\Carbon::parse($loan->return_date), [
+                    {!! Form::label('return_date', \Carbon\Carbon::parse($loan->return_date)->format('d-m-Y'), [
                         'class' => 'form-control mb-2',
                     ]) !!}
 
                 </div>
             </div>
+        </div>
 
+        <div class="card-body">
             <table class="table table-striped">
+                <h2>Máquinas</h2>
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -53,7 +56,6 @@
             </div>
 
             <a href="{{ route('admin.loans.index') }}" class="btn btn-primary mt-4">Volver</a>
-
         </div>
     </div>
 @stop

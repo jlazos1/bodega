@@ -14,10 +14,10 @@ class OutputController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:admin.inputs.index')->only('index');
-        $this->middleware('can:admin.inputs.create')->only('create', 'store');
-        $this->middleware('can:admin.inputs.edit')->only('edit', 'update');
-        $this->middleware('can:admin.inputs.show')->only('show');
+        $this->middleware('can:admin.outputs.index')->only('index');
+        $this->middleware('can:admin.outputs.create')->only('create', 'store');
+        $this->middleware('can:admin.outputs.edit')->only('edit', 'update');
+        $this->middleware('can:admin.outputs.show')->only('show');
 
     }
     
@@ -67,7 +67,18 @@ class OutputController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $output = Output::find($id);
+        $origin_branch_name = Branch::find($output->origin_branch_id)->name;
+        $destination_branch_name = Branch::find($output->destination_branch_id)->name;
+
+        $productsAdd = DetailsOutput::where('output_id', '=', $output->id)
+            ->join('products', 'products.id', '=', 'details_outputs.product_id')
+            ->select('details_outputs.*', 'products.name AS product_name')
+            ->get();
+
+        return view('admin.outputs.show', compact('output', 'origin_branch_name', 'destination_branch_name', 'productsAdd'));
+
+
     }
 
     /**

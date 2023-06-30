@@ -1,6 +1,6 @@
 <div class="visible-print text-center">
-    {!! QrCode::size(300)->generate($url) !!}
+    <img src="data:image/png;base64, {!! $qrcode !!}">
     <div class="border"> 
-        <h1 class="text-center bg">{{ $url }} asdsad</h1>
+        <h1 class="text-center">{{ $url }}</h1>
     </div>
 </div>
