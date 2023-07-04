@@ -436,12 +436,6 @@ return [
             'can'        => 'admin.asset_types.index',
         ],
         [
-            'text'       => 'asset_models',
-            'icon_color' => 'cyan',
-            'route'      => 'admin.asset_models.index',
-            'can'        => 'admin.asset_models.index',
-        ],
-        [
             'text'       => 'relocations',
             'icon_color' => 'cyan',
             'route'      => 'admin.relocations.index',
@@ -599,11 +593,11 @@ return [
             ],
         ],
         'Chartjs' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js',
                 ],
             ],

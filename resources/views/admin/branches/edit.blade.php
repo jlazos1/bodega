@@ -48,7 +48,7 @@
                 <small style="color: red">{{ $message }}</small><br>
             @enderror
 
-            {!! Form::submit('Guardar', ['class' => 'btn btn-primary']) !!}
+            {!! Form::submit('Guardar', ['class' => 'btn btn-primary mt-4']) !!}
 
             {!! Form::close() !!}
 

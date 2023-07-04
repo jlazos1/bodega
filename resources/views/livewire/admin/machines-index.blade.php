@@ -33,11 +33,16 @@
                                 <td>{{ $machine->name }}</td>
                                 <td>{{ $machine->branch_name }}</td>
                                 <td>{{ $machine->games_board_name }}</td>
-                                <td> <a href="{{ route('qrcode', [$machine->id]) }}" target="_blank">Ver</a></td>
-                                <td width="10px">
+                                <td> <a href="{{ route('qrcode', [$machine->id]) }}" target="_blank"
+                                        class="btn btn-info fa fa-qrcode"></a></td>
+                                <td style="display: flex;" class="float-right">
+                                    @can('admin.machines.show')
+                                        <a href="{{ route('admin.machines.show', [$machine->id]) }}"
+                                            class="btn btn-primary fa fa-eye mr-2" title="Ver"></a>
+                                    @endcan
                                     @can('admin.machines.edit')
                                         <a href="{{ route('admin.machines.edit', [$machine->id]) }}"
-                                            class="btn btn-primary fa fa-pen-to-square"></a>
+                                            class="btn btn-primary fa fa-pen-to-square mr-2" title="Editar"></a>
                                     @endcan
                                 </td>
                             </tr>

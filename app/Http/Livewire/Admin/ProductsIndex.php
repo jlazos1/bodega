@@ -24,6 +24,7 @@ class ProductsIndex extends Component
             ->join('product_types', 'products.product_type_id', '=', 'product_types.id')
             ->select('products.*', 'product_types.name AS product_type_name')
             ->where('products.name', 'LIKE', '%' . $this->search . '%')
+            ->orWhere('products.id', 'LIKE', '%' . $this->search . '%')
             ->orWhere('product_types.name', 'LIKE', '%' . $this->search . '%')
             ->paginate();
 

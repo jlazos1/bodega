@@ -34,6 +34,7 @@ class MachinesIndex extends Component
             ->where(function ($query) use ($search) {
                 $query->where('machines.name', 'LIKE', '%' . $search . '%')
                     ->orWhere('games_boards.name', 'LIKE', '%' . $search . '%')
+                    ->orWhere('machines.id', 'LIKE', '%' . $search . '%')
                     ->orWhere('branches.name', 'LIKE', '%' . $search . '%')
                     ->orWhere(function ($query) use ($search) {
                         $query->where('machines.state', 1)

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Asset;
-use App\Models\AssetModel;
+use App\Models\AssetType;
 use App\Models\Branch;
 use Illuminate\Http\Request;
 
@@ -15,6 +15,8 @@ class AssetController extends Controller
         $this->middleware('can:admin.assets.index')->only('index');
         $this->middleware('can:admin.assets.create')->only('create', 'store');
         $this->middleware('can:admin.assets.edit')->only('edit', 'update');
+        $this->middleware('can:admin.assets.show')->only('show');
+
     }
 
     /**
@@ -30,10 +32,10 @@ class AssetController extends Controller
      */
     public function create()
     {
-        $asset_models = AssetModel::pluck('name', 'id');
+        $asset_types = AssetType::pluck('name', 'id');
         $branches = Branch::pluck('name', 'id');
 
-        return view('admin.assets.create', compact('asset_models', 'branches'));
+        return view('admin.assets.create', compact('asset_types', 'branches'));
     }
 
     /**
@@ -45,19 +47,19 @@ class AssetController extends Controller
             'name'              => 'required',
             'value'             => 'required',
             'branch_id'         => 'required',
-            'asset_model_id'    => 'required'
+            'asset_type_id'     => 'required'
         ], [
             'name.required'             => 'El campo Nombre es obligatorio',
             'value.required'            => 'El campo Valor es obligatorio',
             'branch_id.required'        => 'El campo Sucursal es obligatorio',
-            'asset_model_id.required'   => 'El campo Modelo es obligatorio',
+            'asset_type_id.required'    => 'El campo Tipo de Activo es obligatorio',
         ]);
 
         $asset = new Asset([
             'name'              => $request->get('name'),
             'value'             => $request->get('value'),
             'branch_id'         => $request->get('branch_id'),
-            'asset_model_id'    => $request->get('asset_model_id')
+            'asset_type_id'     => $request->get('asset_type_id')
         ]);
         $asset->save();
         return redirect()->route('admin.assets.index')->with('info', 'Se creó el Activo correctamente');
@@ -78,10 +80,10 @@ class AssetController extends Controller
     {
         $asset = Asset::find($id);
 
-        $asset_models = AssetModel::pluck('name', 'id');
+        $asset_types = AssetType::pluck('name', 'id');
         $branches = Branch::pluck('name', 'id');
 
-        return view('admin.assets.edit', compact('asset', 'asset_models', 'branches'));
+        return view('admin.assets.edit', compact('asset', 'asset_types', 'branches'));
     }
 
     /**
@@ -93,19 +95,19 @@ class AssetController extends Controller
             'name'              => 'required',
             'value'             => 'required',
             'branch_id'         => 'required',
-            'asset_model_id'    => 'required'
+            'asset_type_id'     => 'required'
         ], [
             'name.required'             => 'El campo Nombre es obligatorio',
             'value.required'            => 'El campo Valor es obligatorio',
             'branch_id.required'        => 'El campo Sucursal es obligatorio',
-            'asset_model_id.required'   => 'El campo Modelo es obligatorio',
+            'asset_type_id.required'    => 'El campo Tipo de Activo es obligatorio',
         ]);
         
         $asset->update([
             'name'              => $request->get('name'),
             'value'             => $request->get('value'),
             'branch_id'         => $request->get('branch_id'),
-            'asset_model_id'    => $request->get('asset_model_id')
+            'asset_type_id'    => $request->get('asset_type_id')
         ]);
 
         return redirect()->route('admin.assets.index')->with('info', 'Se modificaron los datos correctamente');

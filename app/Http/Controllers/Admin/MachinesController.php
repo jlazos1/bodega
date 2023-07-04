@@ -4,10 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Branch;
+use App\Models\DetailsMachineRelocation;
 use App\Models\GamesBoard;
+use App\Models\Loan;
 use App\Models\Machine;
+use App\Models\MachineRelocation;
+use App\Models\Maintenance;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\DB;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class MachinesController extends Controller
@@ -17,7 +22,7 @@ class MachinesController extends Controller
         $this->middleware('can:admin.machines.index')->only('index');
         $this->middleware('can:admin.machines.create')->only('create', 'store');
         $this->middleware('can:admin.machines.edit')->only('edit', 'update');
-
+        $this->middleware('can:admin.machines.show')->only('show');
     }
 
     public function index()
@@ -70,7 +75,33 @@ class MachinesController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $machine = Machine::find($id);
+        $game_board = GamesBoard::find($machine->games_board_id)->name;
+        $branch_name = Branch::find($machine->branch_id)->name;
+
+        $loans = DB::table('machine_loans')
+            ->join('loans', 'loans.id', '=', 'machine_loans.loan_id')
+            ->join('customers', 'customers.id', '=', 'loans.customer_id')
+            ->join('loan_states', 'loan_states.id', '=', 'loans.loan_state_id')
+            ->select('loans.*', 'customers.name AS customer_name', 'loan_states.name AS loan_state_name')
+            ->where('machine_loans.machine_id', $machine->id)
+            ->get();
+
+        $relocations = DB::table('details_machine_relocations')
+            ->join('machine_relocations', 'machine_relocations.id', '=', 'details_machine_relocations.machine_relocation_id')
+            ->join('branches AS ori', 'machine_relocations.origin', '=', 'ori.id')
+            ->join('branches AS dest', 'machine_relocations.destination', '=', 'dest.id')
+            ->select('machine_relocations.*', 'ori.name AS origin_name', 'dest.name AS destination_name')
+            ->where('details_machine_relocations.machine_id', '=', $machine->id)
+            ->get();   
+
+        $maintenances = DB::table('maintenances')
+            ->join('users', 'users.id', '=', 'maintenances.user_id')
+            ->select('maintenances.*', 'users.name AS user_name')
+            ->where('maintenances.machine_id', $machine->id)
+            ->get();
+
+        return view('admin.machines.show', compact('machine', 'game_board', 'branch_name', 'loans', 'relocations', 'maintenances'));
     }
 
     /**
@@ -123,7 +154,7 @@ class MachinesController extends Controller
 
     public function qrcode(string $url)
     {
-        $qrcode = base64_encode(QrCode::format('svg')->size(200)->errorCorrection('H')->generate($url));
+        $qrcode = base64_encode(QrCode::format('svg')->size(200)->errorCorrection('H')->generate('http://777gnv.com:8000/admin/machines/'.$url));
         $pdf = PDF::loadView('qrcode', compact('url', 'qrcode'));
         return $pdf->stream();
     }

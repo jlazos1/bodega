@@ -21,9 +21,8 @@
                             <th>ID</th>
                             <th>Nombre</th>
                             <th>Sucursal</th>
-                            <th>Modelos de Activo</th>
                             <th>Tipo de Activo</th>
-                            <th>Código QR</th>
+                            <!--<th>Código QR</th>-->
                             <th></th>
                         </tr>
                     </thead>
@@ -33,9 +32,8 @@
                                 <td>{{ $asset->id }}</td>
                                 <td>{{ $asset->name }}</td>
                                 <td>{{ $asset->branch_name }}</td>
-                                <td>{{ $asset->asset_model_name }}</td>
                                 <td>{{ $asset->asset_type_name }}</td>
-                                <td> <a href="{{ route('qrcode', [$asset->id]) }}" target="_blank">Ver</a></td>
+                                <!--<td> <a href="{{ route('qrcode', [$asset->id]) }}" target="_blank" class="btn btn-info fa fa-qrcode"></a></td>-->
                                 <td width="10px">
                                     @can('admin.assets.edit')
                                         <a href="{{ route('admin.assets.edit', [$asset->id]) }}"

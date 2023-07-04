@@ -25,16 +25,16 @@
                 <small style="color: red">{{ $message }}</small><br>
             @enderror
 
-            {!! Form::label('asset_model_id', 'Modelo', ['class' => 'h5']) !!}
-            {!! Form::select('asset_model_id', $asset_models, null, [
-                'class' => 'form-control mb-2 select-model',
-                'placeholder' => 'Seleccione un Modelo',
+            {!! Form::label('asset_type_id', 'Tipo de Activo', ['class' => 'h5']) !!}
+            {!! Form::select('asset_type_id', $asset_types, null, [
+                'class' => 'form-control mb-4 select-type',
+                'placeholder' => 'Seleccione un tipo de Activo',
             ]) !!}
-            @error('asset_model_id')
+            @error('asset_type_id')
                 <small style="color: red">{{ $message }}</small><br>
             @enderror
 
-            {!! Form::label('branch_id', 'Sucursal', ['class' => 'h5']) !!}
+            {!! Form::label('branch_id', 'Sucursal', ['class' => 'h5 mt-2' ]) !!}
             {!! Form::select('branch_id', $branches, null, [
                 'class' => 'form-control mb-2 select-branch',
                 'placeholder' => 'Seleccione una Sucursal',
@@ -64,7 +64,7 @@
         });
 
         $(document).ready(function() {
-            let select2 = $('.select-model').select2();
+            let select2 = $('.select-type').select2();
             select2.data('select2').$selection.css('height', '38px');
         });
     </script>

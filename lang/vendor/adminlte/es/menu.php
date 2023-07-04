@@ -33,7 +33,7 @@ return [
     'outputs'                       => 'Movimiento Interno', 
     'product_types'                 => 'Categorías',
     'product_branches'              => 'Stock por Sucursal',
-    'relocations'                   => 'Traslados',
+    'relocations'                   => 'Traslados (Activos)',
     'games_boards'                  => 'Tarjetas (Juegos)',
     'machines'                      => 'Máquinas', 
     'machines_relocations'          => 'Traslados (Máquinas)',

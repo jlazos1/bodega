@@ -29,6 +29,7 @@ use App\Http\Livewire\Admin\DetailsLoansIndex;
 use App\Http\Livewire\Admin\DetailsMachinesRelocationIndex;
 use App\Http\Livewire\Admin\DetailsOutputsIndex;
 use App\Http\Livewire\Admin\DetailsRelocationsIndex;
+use App\Http\Livewire\Admin\MachineBranchDashboard;
 use App\Http\Livewire\Admin\StockBranchIndex;
 
 Route::get('', [HomeController::class, 'index']);
@@ -39,7 +40,6 @@ Route::resource('branches', BranchController::class)->names('admin.branches');
 Route::resource('providers', ProviderController::class)->names('admin.providers'); 
 Route::resource('customers', CustomerController::class)->names('admin.customers');
 Route::resource('asset_types', AssetTypeController::class)->names('admin.asset_types');
-Route::resource('asset_models', AssetModelController::class)->names('admin.asset_models');
 Route::resource('assets', AssetController::class)->names('admin.assets');
 Route::resource('machines', MachinesController::class)->names('admin.machines');
 Route::resource('product_types', ProductTypeController::class)->names('admin.product_types'); 
@@ -58,7 +58,7 @@ Route::resource('detalles-loans', DetailsLoansController::class)->names('admin.d
 Route::resource('maintenances', MaintenancesController::class)->names('admin.maintenances');
 
 
-Route::view('products_branch', 'admin.products_branch.index')->name('products_branch');
+Route::view('products_branch', 'admin.products_branch.index')->name('products_branch'); 
 
 
 Route::get('checkReturn', [LoansController::class, 'checkReturn'])->name('loans.checkReturn');

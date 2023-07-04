@@ -13,7 +13,7 @@ class Asset extends Model
         'name',
         'value',
         'branch_id',
-        'asset_model_id',
+        'asset_type_id',
     ];
 
 }

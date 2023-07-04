@@ -29,7 +29,7 @@
                         @foreach ($maintenances as $maintenance)
                             <tr>
                                 <td>{{ $maintenance->id }}</td>
-                                <td>{{ $maintenance->date }}</td>
+                                <td>{{ \Carbon\Carbon::parse($maintenance->date)->format('d-m-Y') }}</td>
                                 <td>{{ $maintenance->machine_name }}</td>
                                 <td>{{ $maintenance->user_name }}</td>
                                 <td width="10px">

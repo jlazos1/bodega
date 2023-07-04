@@ -39,17 +39,17 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'admin.asset_types.create'])->syncRoles([$admin, $tecnico]);
         Permission::create(['name' => 'admin.asset_types.edit'])->syncRoles([$admin, $tecnico]);
 
-        Permission::create(['name' => 'admin.asset_models.index'])->syncRoles([$admin, $tecnico]);
-        Permission::create(['name' => 'admin.asset_models.create'])->syncRoles([$admin, $tecnico]);
-        Permission::create(['name' => 'admin.asset_models.edit'])->syncRoles([$admin, $tecnico]);
-
         Permission::create(['name' => 'admin.assets.index'])->syncRoles([$admin, $tecnico]);
         Permission::create(['name' => 'admin.assets.create'])->syncRoles([$admin, $tecnico]);
         Permission::create(['name' => 'admin.assets.edit'])->syncRoles([$admin, $tecnico]);
+        Permission::create(['name' => 'admin.assets.show'])->syncRoles([$admin, $tecnico]);
+
 
         Permission::create(['name' => 'admin.machines.index'])->syncRoles([$admin, $tecnico]);
         Permission::create(['name' => 'admin.machines.create'])->syncRoles([$admin, $tecnico]);
         Permission::create(['name' => 'admin.machines.edit'])->syncRoles([$admin, $tecnico]);
+        Permission::create(['name' => 'admin.machines.show'])->syncRoles([$admin, $tecnico]);
+
 
         Permission::create(['name' => 'admin.product_types.index'])->syncRoles([$admin, $tecnico, $inventario]);
         Permission::create(['name' => 'admin.product_types.create'])->syncRoles([$admin, $tecnico, $inventario]);

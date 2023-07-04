@@ -40,13 +40,10 @@ class CustomerController extends Controller
             'name'      => 'required',
             'address'   => 'required',
             'phone'     => 'required',
-            'email'     => 'required|email',
             'city_id'   => 'required',
         ], [
             'name.required'         => 'El campo Nombre es obligatorio',
-            'address.required'      => 'El campo Direccioón es obligatorio',
-            'email.required'        => 'El campo Email es obligatorio',
-            'email.email'           => 'El Email ingresado no es válido',
+            'address.required'      => 'El campo Dirección es obligatorio',
             'phone.required'        => 'El campo Teléfono es obligatorio',
             'city_id.required'      => 'El campo Ciudad es obligatorio',
         ]);
@@ -91,13 +88,10 @@ class CustomerController extends Controller
             'name'      => 'required',
             'address'   => 'required',
             'phone'     => 'required',
-            'email'     => 'required|email',
             'city_id'   => 'required',
         ], [
             'name.required'         => 'El campo Nombre es obligatorio',
             'address.required'      => 'El campo Dirección es obligatorio',
-            'email.required'        => 'El campo Email es obligatorio',
-            'email.email'           => 'El Email ingresado no es válido',
             'phone.required'        => 'El campo Teléfono es obligatorio',
             'city_id.required'      => 'El campo Ciudad es obligatorio',
         ]);

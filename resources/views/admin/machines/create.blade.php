@@ -34,7 +34,7 @@
                 <small style="color: red">{{ $message }}</small><br>
             @enderror
 
-            {!! Form::label('branch_id', 'Sucursal', ['class' => 'h5']) !!}
+            {!! Form::label('branch_id', 'Sucursal', ['class' => 'h5 mt-2']) !!}
             {!! Form::select('branch_id', $branches, null, [
                 'class' => 'form-control mb-2 select-branch',
                 'placeholder' => 'Seleccione una Sucursal',

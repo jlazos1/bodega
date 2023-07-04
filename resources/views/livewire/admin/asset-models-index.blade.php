@@ -22,7 +22,6 @@
                             <th>ID</th>
                             <th>Nombre</th>
                             <th>Tipo de Activo</th>
-                            <th>Descripción</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -32,7 +31,6 @@
                                 <td>{{ $am->id }}</td>
                                 <td>{{ $am->name }}</td>
                                 <td>{{ $am->asset_type_name }}</td>
-                                <td> <a href="">Descripcion</a></td>
                                 <td width="10px">
                                     @can('admin.asset_models.edit')
                                         <a href="{{ route('admin.asset_models.edit', $am->id) }}"
