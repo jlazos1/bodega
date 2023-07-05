@@ -154,7 +154,7 @@ class MachinesController extends Controller
 
     public function qrcode(string $url)
     {
-        $qrcode = base64_encode(QrCode::format('svg')->size(200)->errorCorrection('H')->generate('http://777gnv.com:8000/admin/machines/'.$url));
+        $qrcode = base64_encode(QrCode::format('svg')->size(200)->errorCorrection('H')->generate('http://777gnv.com/admin/machines/'.$url));
         $pdf = PDF::loadView('qrcode', compact('url', 'qrcode'));
         return $pdf->stream();
     }
