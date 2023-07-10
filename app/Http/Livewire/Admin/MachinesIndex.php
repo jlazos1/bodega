@@ -40,6 +40,11 @@ class MachinesIndex extends Component
                         $query->where('machines.state', 1)
                             ->where('branches.name', 'LIKE', '%' . $search . '%');
                     });
+
+                // Agregar condición adicional cuando $search es igual a "Arriendo"
+                if ($search === 'Arrendada') {
+                    $query->orWhere('machines.state', 1);
+                }
             })
             ->paginate();
 

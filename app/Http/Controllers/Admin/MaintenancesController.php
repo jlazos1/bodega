@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Branch;
 use App\Models\Machine;
 use App\Models\Maintenance;
 use App\Models\User;
@@ -67,10 +68,12 @@ class MaintenancesController extends Controller
     public function show(string $id)
     {
         $maintenance = Maintenance::find($id);
-        $machine_name = Machine::find($maintenance->machine_id)->name;
+        $machine = Machine::find($maintenance->machine_id);
+        $machine_name = $machine->name;
         $user_name = User::find($maintenance->user_id)->name;
+        $branch_name = Branch::find($machine->branch_id)->name;
 
-        return view('admin.maintenances.show', compact('maintenance','machine_name', 'user_name'));
+        return view('admin.maintenances.show', compact('maintenance','machine_name', 'user_name', 'branch_name'));
     }
 
     /**

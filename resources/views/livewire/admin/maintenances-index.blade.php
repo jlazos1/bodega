@@ -21,6 +21,7 @@
                             <th>ID</th>
                             <th>Fecha</th>
                             <th>Máquina</th>
+                            <th>Sucursal</th>
                             <th>Encargado</th>
                             <th></th>
                         </tr>
@@ -31,6 +32,7 @@
                                 <td>{{ $maintenance->id }}</td>
                                 <td>{{ \Carbon\Carbon::parse($maintenance->date)->format('d-m-Y') }}</td>
                                 <td>{{ $maintenance->machine_name }}</td>
+                                <td>{{ $maintenance->branch_name}}</td>
                                 <td>{{ $maintenance->user_name }}</td>
                                 <td width="10px">
                                     @can('admin.maintenances.show')

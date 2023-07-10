@@ -25,12 +25,12 @@
                 <small style="color: red">{{ $message }}</small><br>
             @enderror
 
-            {!! Form::label('asset_model_id', 'Modelo', ['class' => 'h5']) !!}
-            {!! Form::select('asset_model_id', $asset_models, $asset->asset_model_id, [
-                'class' => 'form-control mb-2 select-model',
-                'placeholder' => 'Seleccione un Modelo',
+            {!! Form::label('asset_type_id', 'Tipo de Activo', ['class' => 'h5']) !!}
+            {!! Form::select('asset_type_id', $asset_types, $asset->asset_type_id, [
+                'class' => 'form-control mb-2 select-type',
+                'placeholder' => 'Seleccione un tipo de Activo',
             ]) !!}
-            @error('asset_model_id')
+            @error('asset_type_id')
                 <small style="color: red">{{ $message }}</small><br>
             @enderror
 

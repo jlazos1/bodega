@@ -15,6 +15,9 @@
             {!! Form::label('machine_id', 'Nombre Máquina', ['class' => 'h5']) !!}
             {!! Form::label('machine_name', $machine_name, ['class' => 'form-control mb-2']) !!}
 
+            {!! Form::label('branch_name', 'Sucursal', ['class' => 'h5']) !!}
+            {!! Form::label('branch_name', $branch_name, ['class' => 'form-control mb-2']) !!}
+
             {!! Form::label('date', 'Fecha', ['class' => 'h5']) !!}
             {!! Form::label('date', \Carbon\Carbon::parse($maintenance->date)->format('d-m-Y'), ['class' => 'form-control mb-2']) !!}
 

@@ -26,6 +26,7 @@ class DetailsLoansIndex extends Component
         $loan_id = $this->loan->id;
         $machines = Machine::select(DB::raw("CONCAT(id, ' - ', name) AS name_id, id"))
             ->where('machines.state', 0)
+            ->where('machines.branch_id', 1)
             ->pluck('name_id', 'id');
         $machinesAdd = DB::table('machine_loans')
             ->join('machines', 'machines.id', '=', 'machine_loans.machine_id')

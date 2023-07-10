@@ -20,11 +20,18 @@ class DetailsOutputsIndex extends Component
     {
         $this->output = Output::find($output_id);
     }
-    
+
     public function render()
     {
         $output = $this->output;
-        $products = Product::select(DB::raw("CONCAT(id, ' - ', name) AS name_id, id"))->pluck('name_id', 'id');
+
+        $products = DB::table('products AS p')
+            ->rightJoin('product_branches As pb', 'p.id', '=', 'pb.product_id')
+            ->where('pb.branch_id', '=', $output->origin_branch_id)
+            ->select(DB::raw("CONCAT(p.id, ' - ', p.name, ' (Stock: ', pb.quantity, ')') AS name_id, p.id"))
+            ->orderBy('p.id')
+            ->pluck('name_id', 'id');
+
         $productsAdd = DB::table('details_outputs')
             ->join('products', 'products.id', '=', 'details_outputs.product_id')
             ->select('details_outputs.*', 'products.name AS product_name')

@@ -30,7 +30,7 @@ class DetailsInputsIndex extends Component
             ->join('products', 'products.id', '=', 'details_inputs.product_id')
             ->select('details_inputs.*', 'products.name AS product_name')
             ->where('details_inputs.input_id', $this->input->id)
-            ->paginate();
+            ->get();
         //$productsAdd = DetailsInput::where('input_id');    
 
         return view('livewire.admin.details-inputs-index', compact('input', 'products', 'productsAdd'));

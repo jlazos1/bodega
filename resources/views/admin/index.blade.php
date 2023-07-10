@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-
+    @livewire('admin.machine-branch-dashboard')
 @stop
 
 @section('css')

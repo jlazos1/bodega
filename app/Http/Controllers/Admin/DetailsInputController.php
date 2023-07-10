@@ -10,8 +10,6 @@ use App\Models\ProductBranch;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-use function PHPUnit\Framework\isNull;
-
 class DetailsInputController extends Controller
 {
     public function __construct()
@@ -64,16 +62,13 @@ class DetailsInputController extends Controller
             ]);
             $details->save();
 
-        } else {
-            $details->update([
-                'quantity'      => $details->quantity + $request->get('quantity'),
-                'price'         => $request->get('price'),
+            $input->update([
+                'net_amount'    => $input->net_amount + ($request->get('quantity') * $request->get('price')),
             ]);
-        }
 
-        $input->update([
-            'net_amount'    => $input->net_amount + ($request->get('quantity') * $request->get('price')),
-        ]);
+        } else {
+            return redirect()->route('details_inputs', ['input_id' => $request->get('input_id')])->with('error', 'El producto ya se encuentra agregado');
+        }        
 
         $branch_id = DB::table('inputs')->where('id', $request->get('input_id'))->first()->branch_id;
         //$branch_id = Branch::find($request->get('input_id'))->id;

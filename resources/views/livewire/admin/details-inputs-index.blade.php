@@ -6,7 +6,11 @@
     <h1>Productos entrada</h1>
 @stop
 @section('content')
-
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
     <div class="card pr-4 pl-4 pb-5">
         {!! Form::token() !!}
         {!! Form::open(['route' => 'admin.detalles-inputs.store', 'method' => 'post']) !!}

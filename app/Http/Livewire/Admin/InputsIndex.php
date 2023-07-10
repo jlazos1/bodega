@@ -44,6 +44,7 @@ class InputsIndex extends Component
                     Carbon::parse($this->to_date)->endOfDay()
                 ]);
             })
+            ->orderBy('inputs.id')
             ->paginate();
 
         return view('livewire.admin.inputs-index', compact('inputs'));
